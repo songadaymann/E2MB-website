@@ -1,0 +1,141 @@
+import {
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  Button,
+  Box,
+} from '@chakra-ui/react'
+
+function parseYouTubeTime(value) {
+  if (!value) return null
+  if (/^\d+$/.test(value)) {
+    return Number(value)
+  }
+
+  const regex = /(\d+)(h|m|s)/g
+  let match
+  let totalSeconds = 0
+
+  while ((match = regex.exec(value)) !== null) {
+    const amount = Number(match[1])
+    const unit = match[2]
+
+    if (unit === 'h') {
+      totalSeconds += amount * 3600
+    } else if (unit === 'm') {
+      totalSeconds += amount * 60
+    } else if (unit === 's') {
+      totalSeconds += amount
+    }
+  }
+
+  return totalSeconds || null
+}
+
+function SquareModal({ isOpen, onClose, square }) {
+  if (!square) return null
+
+  const resolveIframeSrc = (url) => {
+    if (!url) return null
+
+    try {
+      const parsed = new URL(url)
+      const host = parsed.hostname.replace(/^www\./, '')
+
+      const normaliseYouTubeParams = (searchParams) => {
+        const params = new URLSearchParams(searchParams)
+        const rawTime = params.get('t')
+        if (rawTime) {
+          const startSeconds = parseYouTubeTime(rawTime)
+          params.delete('t')
+          if (startSeconds !== null) {
+            params.set('start', String(startSeconds))
+          }
+        }
+        params.delete('si')
+        return params.toString()
+      }
+
+      if (host === 'youtu.be') {
+        const videoId = parsed.pathname.slice(1)
+        const query = normaliseYouTubeParams(parsed.searchParams)
+        return `https://www.youtube.com/embed/${videoId}${
+          query ? `?${query}` : ''
+        }`
+      }
+
+      if (host.endsWith('youtube.com')) {
+        // Handle watch URLs, shorts, and playlist params gracefully
+        if (parsed.pathname === '/watch') {
+          const videoId = parsed.searchParams.get('v')
+          if (videoId) {
+            parsed.searchParams.delete('v')
+            const query = normaliseYouTubeParams(parsed.searchParams)
+            return `https://www.youtube.com/embed/${videoId}${
+              query ? `?${query}` : ''
+            }`
+          }
+        } else if (parsed.pathname.startsWith('/shorts/')) {
+          const parts = parsed.pathname.split('/')
+          const videoId = parts[2]
+          if (videoId) {
+            return `https://www.youtube.com/embed/${videoId}`
+          }
+        } else if (parsed.pathname.startsWith('/embed/')) {
+          return url
+        }
+      }
+
+      return url
+    } catch (error) {
+      return url
+    }
+  }
+
+  const iframeSrc = resolveIframeSrc(square.modalUrl)
+
+  return (
+    <Modal isOpen={isOpen} onClose={onClose} size="xl">
+      <ModalOverlay />
+      <ModalContent bg="black" border="2px solid white">
+        <ModalHeader>{square.modalTitle || 'Details'}</ModalHeader>
+        <ModalCloseButton />
+        <ModalBody whiteSpace="pre-line">
+          {iframeSrc ? (
+            <iframe 
+              src={iframeSrc} 
+              style={{ 
+                width: '100%', 
+                height: '500px', 
+                border: 'none' 
+              }}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+              title={square.modalTitle || 'Content'}
+            />
+          ) : square.image ? (
+            <img 
+              src={square.image} 
+              alt="" 
+              style={{ width: '100%', marginBottom: '1rem' }}
+            />
+          ) : (
+            square.modalContent || square.content
+          )}
+          {square.modalContent && typeof square.modalContent === 'string' && (
+            <Box mt={4}>{square.modalContent}</Box>
+          )}
+        </ModalBody>
+        <ModalFooter>
+          <Button onClick={onClose}>Close</Button>
+        </ModalFooter>
+      </ModalContent>
+    </Modal>
+  )
+}
+
+export default SquareModal

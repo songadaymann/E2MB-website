@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EVERY TWO MILLION BLOCKS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Martel+Sans:wght@900&family=Noto+Music&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: 'Martel Sans', sans-serif;
+            padding: 40px;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .header-container {
+            position: fixed;
+            top: 40px;
+            left: 40px;
+            transform-origin: top left;
+        }
+
+        @media (max-width: 1200px) {
+            .header-container {
+                transform: scale(0.8);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                transform: scale(0.6);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header-container {
+                transform: scale(0.45);
+            }
+        }
+
+        h1 {
+            position: relative;
+            font-family: 'Martel Sans', sans-serif;
+            font-weight: 900;
+            color: #fff;
+            font-size: 3rem;
+            line-height: 1.1;
+            margin: 0;
+            white-space: pre-line;
+            z-index: 10;
+            padding: 2px 2px 2px 2px;
+        }
+
+        /* Independent box - adjust width/height to control box size */
+        h1::after {
+            content: '';
+            position: absolute;
+            top: -2px;      /* Distance from top of text */
+            left: -2px;     /* Distance from left of text */
+            width: 220px;   /* Fixed width - adjust this */
+            height: 205px;  /* Fixed height - adjust this */
+            border: 2px solid #fff;
+            z-index: -1;
+        }
+
+        /* Adjust these letter-spacing values to make all lines the same width */
+        h1 .line1 { letter-spacing: 0.27em; }  /* EVERY - adjust this */
+        h1 .line2 { letter-spacing: .98em; }  /* TWO - adjust this */
+        h1 .line3 { letter-spacing: 0; }       /* MILLION - baseline, don't change */
+        h1 .line4 { letter-spacing: 0.065em; }  /* BLOCKS - adjust this */
+
+        #countdown {
+            position: relative;
+            margin-top: -75px;
+            margin-left: -115px;
+            max-width: 450px;
+            width: 450px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header-container">
+        <h1><span class="line1">EVERY</span>
+<span class="line2">TWO</span>
+<span class="line3">MILLION</span>
+<span class="line4">BLOCKS</span></h1>
+        <svg id="countdown" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 420" width="360" height="420">
+        <defs>
+            <g id="d0" transform="translate(4,0)"><rect x="0" y="0" width="16" height="4"/><rect x="-4" y="4" width="4" height="16"/><rect x="16" y="4" width="4" height="16"/><rect x="-4" y="22" width="4" height="16"/><rect x="16" y="22" width="4" height="16"/><rect x="0" y="36" width="16" height="4"/></g>
+            <g id="d1" transform="translate(4,0)"><rect x="16" y="4" width="4" height="16"/><rect x="16" y="22" width="4" height="16"/></g>
+            <g id="d2" transform="translate(4,0)"><rect x="0" y="0" width="16" height="4"/><rect x="16" y="4" width="4" height="16"/><rect x="0" y="18" width="16" height="4"/><rect x="-4" y="22" width="4" height="16"/><rect x="0" y="36" width="16" height="4"/></g>
+            <g id="d3" transform="translate(4,0)"><rect x="0" y="0" width="16" height="4"/><rect x="16" y="4" width="4" height="16"/><rect x="0" y="18" width="16" height="4"/><rect x="16" y="22" width="4" height="16"/><rect x="0" y="36" width="16" height="4"/></g>
+            <g id="d4" transform="translate(4,0)"><rect x="-4" y="4" width="4" height="16"/><rect x="0" y="18" width="16" height="4"/><rect x="16" y="4" width="4" height="16"/><rect x="16" y="22" width="4" height="16"/></g>
+            <g id="d5" transform="translate(4,0)"><rect x="0" y="0" width="16" height="4"/><rect x="-4" y="4" width="4" height="16"/><rect x="0" y="18" width="16" height="4"/><rect x="16" y="22" width="4" height="16"/><rect x="0" y="36" width="16" height="4"/></g>
+            <g id="d6" transform="translate(4,0)"><rect x="0" y="0" width="16" height="4"/><rect x="-4" y="4" width="4" height="16"/><rect x="0" y="18" width="16" height="4"/><rect x="-4" y="22" width="4" height="16"/><rect x="16" y="22" width="4" height="16"/><rect x="0" y="36" width="16" height="4"/></g>
+            <g id="d7" transform="translate(4,0)"><rect x="0" y="0" width="16" height="4"/><rect x="16" y="4" width="4" height="16"/><rect x="16" y="22" width="4" height="16"/></g>
+            <g id="d8" transform="translate(4,0)"><rect x="0" y="0" width="16" height="4"/><rect x="-4" y="4" width="4" height="16"/><rect x="16" y="4" width="4" height="16"/><rect x="0" y="18" width="16" height="4"/><rect x="-4" y="22" width="4" height="16"/><rect x="16" y="22" width="4" height="16"/><rect x="0" y="36" width="16" height="4"/></g>
+            <g id="d9" transform="translate(4,0)"><rect x="0" y="0" width="16" height="4"/><rect x="-4" y="4" width="4" height="16"/><rect x="16" y="4" width="4" height="16"/><rect x="0" y="18" width="16" height="4"/><rect x="16" y="22" width="4" height="16"/><rect x="0" y="36" width="16" height="4"/></g>
+            <clipPath id="digitWindow" clipPathUnits="userSpaceOnUse"><rect x="0" y="0" width="50" height="50"/></clipPath>
+        </defs>
+        <rect width="100%" height="100%" fill="#000"/>
+        <g id="digits" fill="#fff"></g>
+    </svg>
+    </div>
+
+    <script>
+        const TARGET_DATE = Date.UTC(2026, 0, 1, 0, 0, 0);
+        const BLOCK_TIME = 12;
+
+        function createDigitColumn(x, y, containerId) {
+            const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+            g.setAttribute('transform', `translate(${x}, ${y})`);
+            g.setAttribute('clip-path', 'url(#digitWindow)');
+            
+            const innerG = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+            innerG.id = containerId;
+            innerG.setAttribute('transform', 'translate(13, 0)');
+            
+            for (let i = 0; i <= 10; i++) {
+                const use = document.createElementNS('http://www.w3.org/2000/svg', 'use');
+                use.setAttribute('href', `#d0`);
+                use.setAttribute('y', i * 50);
+                innerG.appendChild(use);
+            }
+            
+            g.appendChild(innerG);
+            return g;
+        }
+
+        const positions = [
+            [65, 80], [125, 80], [185, 80], [245, 80],
+            [65, 140], [125, 140], [185, 140], [245, 140],
+            [65, 200], [125, 200], [185, 200], [245, 200]
+        ];
+
+        const digitsContainer = document.getElementById('digits');
+        const digitColumns = [];
+
+        positions.forEach((pos, i) => {
+            const col = createDigitColumn(pos[0], pos[1], `col${i}`);
+            digitsContainer.appendChild(col);
+            digitColumns.push(document.getElementById(`col${i}`));
+        });
+
+        function updateDigit(container, digit) {
+            const uses = container.querySelectorAll('use');
+            for (let i = 0; i <= 10; i++) {
+                const d = (digit - i + 20) % 10;
+                uses[i].setAttribute('href', `#d${d}`);
+            }
+            container.setAttribute('transform', 'translate(13, 0)');
+        }
+
+        function updateSmoothDigit(container, fractionalValue) {
+            const digit = Math.floor(fractionalValue);
+            const fraction = fractionalValue - digit;
+            const yOffset = -fraction * 50;
+            
+            const uses = container.querySelectorAll('use');
+            for (let i = 0; i <= 10; i++) {
+                const d = (digit - i + 20) % 10;
+                uses[i].setAttribute('href', `#d${d}`);
+            }
+            
+            container.setAttribute('transform', `translate(13, ${yOffset})`);
+        }
+
+        function updateCountdown() {
+            const now = Date.now();
+            const remainingMs = TARGET_DATE - now;
+            const remainingSeconds = Math.max(0, remainingMs / 1000);
+            const remainingBlocks = remainingSeconds / BLOCK_TIME;
+
+            const blockStr = Math.floor(remainingBlocks).toString().padStart(12, '0');
+            
+            for (let i = 0; i < 12; i++) {
+                const isOnesPlace = (i === 11);
+                
+                if (isOnesPlace) {
+                    const fractionalValue = remainingBlocks % 10;
+                    updateSmoothDigit(digitColumns[i], fractionalValue);
+                } else {
+                    updateDigit(digitColumns[i], parseInt(blockStr[i]));
+                }
+            }
+        }
+
+        updateCountdown();
+        setInterval(updateCountdown, 50);
+    </script>
+</body>
+</html>
