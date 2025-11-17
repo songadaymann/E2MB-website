@@ -7,6 +7,7 @@ export default defineConfig(({ command }) => ({
   base: command === 'build' ? '/E2MB-website/' : '/',
   root: '.',
   build: {
-    outDir: 'dist',
+    // GitHub Pages can only serve from / (root) or /docs, so emit builds there.
+    outDir: 'docs',
   },
 }))
