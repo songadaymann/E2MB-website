@@ -381,7 +381,7 @@ export const squaresData = [
   },
   {
     id: 33,
-    text: "one note is revealed every 2 million blocks.",
+    text: "one note is revealed every ~2,628,000 blocks.",
     // Empty square - leave text as empty string
   },
   {
@@ -403,93 +403,207 @@ export const squaresData = [
   },
   {
     id: 37,
-    text: "",
+    text: "this is the 37th block\n\nthe average human lifespan is 73 years",
     // Empty square - leave text as empty string
   },
   {
     id: 38,
-    text: "",
+    text: "the universe will achieve heat death in 10^100 years",
     // Empty square - leave text as empty string
   },
   {
     id: 33,
-    text: "",
+    text: "i have nothing to say and i am saying it",
     // Empty square - leave text as empty string
   },
   {
     id: 34,
-    text: "",
+    text: "(john cage said that)",
     // Empty square - leave text as empty string
   },
   {
     id: 35,
-    text: "",
+    customContent: true,
+    content: (
+      <div style={{ textAlign: 'center', padding: '1rem', display: 'flex', color: 'white  ', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%' }}>
+        <div style={{ fontSize: '5rem' }}>𝆰</div>
+    
+      </div>
+    ),
     // Empty square - leave text as empty string
   },
   {
     id: 36,
-    text: "",
+    text: "vinyl records degrade ~0.001% with each play",
     // Empty square - leave text as empty string
   },
   {
     id: 37,
-    text: "",
+    text: "ok",
     // Empty square - leave text as empty string
   },
   {
     id: 38,
-    text: "",
+    text: "[intentionally left blank]",
     // Empty square - leave text as empty string
   },
   {
     id: 39,
-    text: "",
+    text: "i can't remember what yesterday's song was about",
     // Empty square - leave text as empty string
   },
   {
     id: 40,
-    text: "",
+    text: "brian eno coined the term generative music",
     // Empty square - leave text as empty string
   },
   {
     id: 41,
-    text: "",
-    // Empty square - leave text as empty string
+    type: 'hover',
+    defaultContent: (
+      <div style={{ 
+        width: '100%', 
+        height: '100%', 
+        background: '#000',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        position: 'relative',
+        overflow: 'hidden'
+      }}>
+        <div style={{
+          fontSize: '3em',
+          fontFamily: 'monospace',
+          color: '#0f0',
+          textShadow: '2px 2px 0 #f0f, -2px -2px 0 #0ff',
+          animation: 'glitch 0.3s infinite',
+          letterSpacing: '0.05em'
+        }}>
+          ẗ̷̯́ỉ̶͇m̸̱̈ë̴́ͅ.̷̺̾ë̸́ͅr̷͉̈r̵̤̈
+        </div>
+        <div style={{
+          position: 'absolute',
+          width: '100%',
+          height: '2px',
+          background: '#fff',
+          top: '30%',
+          animation: 'scanline 4s linear infinite',
+          opacity: 0.5
+        }} />
+        <style>{`
+          @keyframes glitch {
+            0% { transform: translate(0); }
+            20% { transform: translate(-1px, 1px); }
+            40% { transform: translate(1px, -1px); }
+            60% { transform: translate(-1px, 0); }
+            80% { transform: translate(1px, 0); }
+            100% { transform: translate(0); }
+          }
+          @keyframes scanline {
+            0% { top: 0%; }
+            100% { top: 100%; }
+          }
+        `}</style>
+      </div>
+    ),
+    hoverContent: (
+      <div style={{ 
+        textAlign: 'center', 
+        padding: '1rem', 
+        display: 'flex', 
+        flexDirection: 'column', 
+        alignItems: 'center', 
+        justifyContent: 'center', 
+        height: '100%', 
+        fontSize: '2rem', 
+        fontWeight: 'bold',
+        color: '#fff'
+      }}>
+        breathe
+      </div>
+    ),
   },
   {
     id: 42,
-    text: "",
-    // Empty square - leave text as empty string
+    text: "cats that glow when exposed to radiation",
+    clickable: true,
+    modalTitle: 'Ray Cat',
+    modalUrl: 'https://en.wikipedia.org/wiki/Ray_cat',
   },
   {
     id: 43,
-    text: "",
+    customContent: true,
+    content: (
+      <div style={{ textAlign: 'center', padding: '1rem', display: 'flex', color: 'white  ', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%' }}>
+        <div style={{ fontSize: '5rem' }}>𝆏</div>
+    
+      </div>
+    ),
     // Empty square - leave text as empty string
   },
   {
     id: 44,
-    text: "",
+    text: "the oldest playable flute is 35,000 years old",
     // Empty square - leave text as empty string
   },
   {
     id: 45,
-    text: "",
+    text: "i took a class in grad school with morton subotnick",
     // Empty square - leave text as empty string
   },
   {
     id: 46,
-    text: "",
-    // Empty square - leave text as empty string
+    customContent: true,
+    content: (
+      <div
+        style={{
+          width: '100%',
+          height: '100%',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          background: 'radial-gradient(circle at center, #FFFFFF 0%, #111111 60%, #000000 100%)',
+        }}
+      >
+        <div
+          style={{
+            width: '60%',
+            height: '60%',
+            borderRadius: '50%',
+            border: '2px solid rgba(255,255,255,0.4)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            boxShadow: '0 0 25px rgba(0,0,0,0.9) inset',
+          }}
+        >
+          <div
+            style={{
+              width: '18%',
+              height: '18%',
+              borderRadius: '50%',
+              background: '#FFFFFF',
+            }}
+          />
+        </div>
+      </div>
+    ),
   },
+  
   {
     id: 47,
-    text: "",
+    text: "link rot",
     // Empty square - leave text as empty string
   },
   {
     id: 48,
-    text: "every nft minted extends this song for a year.",
-    // Empty square - leave text as empty string
+    customContent: true,
+    content: (
+      <div style={{ textAlign: 'center', padding: '1rem', display: 'flex', color: 'white  ', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%' }}>
+        <div style={{ fontSize: '5rem' }}>∞²</div>
+    
+      </div>
+    ),
   },
   {
     id: 49,
@@ -498,12 +612,21 @@ export const squaresData = [
   },
   {
     id: 50,
-    text: "",
-    // Empty square - leave text as empty string
+    type: 'hover',
+    defaultContent: (
+      <div style={{ textAlign: 'center', padding: '1rem', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%' }}>
+        <div style={{ fontSize: '2.2rem', fontWeight: 'bold' }}>this song lasts forever</div>
+      </div>
+    ),
+    hoverContent: (
+      <div style={{ textAlign: 'center', padding: '1rem', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%', fontSize: '1.6rem', fontWeight: 'bold' }}>
+        or until ethereum stops adding blocks
+      </div>
+    ),
   },
   {
     id: 51,
-    text: "you + me + markov chain + ethereum = E2MB ",
+    text: "SEVEN WORDS",
     // Empty square - leave text as empty string
   },
   {
@@ -513,17 +636,53 @@ export const squaresData = [
   },
   {
     id: 53,
-    text: "",
-    // Empty square - leave text as empty string
+    customContent: true,
+    content: (
+      <div
+        style={{
+          width: '100%',
+          height: '100%',
+          display: 'grid',
+          gridTemplateColumns: '1fr 1fr',
+        }}
+      >
+        <div
+          style={{
+            background: '#000000',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            fontSize: '0.9rem',
+            textTransform: 'uppercase',
+            letterSpacing: '0.2em',
+          }}
+        >
+          now
+        </div>
+        <div
+          style={{
+            background: 'radial-gradient(circle at top left, #FCB53B, #A72703)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            fontSize: '0.9rem',
+            textTransform: 'uppercase',
+            letterSpacing: '0.2em',
+          }}
+        >
+          later
+        </div>
+      </div>
+    ),
   },
   {
     id: 54,
-    text: "",
+    text: "a black hole emits Hawking radiation at a temperature of 10^-7 K ",
     // Empty square - leave text as empty string
   },
   {
     id: 55,
-    text: "",
+    text: "magnetic tape loses 1-2% of signal annually",
     // Empty square - leave text as empty string
   },
   {
@@ -533,8 +692,56 @@ export const squaresData = [
   },
   {
     id: 57,
-    text: "",
-    // Empty square - leave text as empty string
+    customContent: true,
+    content: (
+      <div
+        style={{
+          width: '100%',
+          height: '100%',
+          background: '#050509',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <div
+          style={{
+            width: '80%',
+            borderRadius: '3px',
+            border: '1px solid rgba(255,255,255,0.6)',
+            overflow: 'hidden',
+            fontSize: '0.65rem',
+          }}
+        >
+          <div
+            style={{
+              padding: '0.25rem 0.4rem',
+              background:
+                'linear-gradient(90deg, #A72703 0%, #FCB53B 100%)',
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+            }}
+          >
+            <span style={{ textTransform: 'uppercase', letterSpacing: '0.12em' }}>
+              404.exe
+            </span>
+            <span>✕</span>
+          </div>
+          <div
+            style={{
+              padding: '0.4rem 0.5rem',
+              background: 'rgba(0,0,0,0.85)',
+              lineHeight: 1.4,
+            }}
+          >
+            time not found
+            <br />
+            please try again later
+          </div>
+        </div>
+      </div>
+    ),
   },
   {
     id: 58,
@@ -543,43 +750,86 @@ export const squaresData = [
   },
   {
     id: 59,
-    text: "",
+    customContent: true,
+    content: (
+      <div style={{ textAlign: 'center', padding: '1rem', display: 'flex', color: 'white  ', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%' }}>
+        <div style={{ fontSize: '5rem' }}>𝇟</div>
+    
+      </div>
+    ),
     // Empty square - leave text as empty string
   },
   {
     id: 60,
-    text: "",
+    text: "cesium atoms vibrate 9,192,631,770 times per second",
     // Empty square - leave text as empty string
   },
   {
     id: 61,
-    text: "",
+    text: "leave a note to be passed down to future generations",
     // Empty square - leave text as empty string
   },
   {
     id: 62,
-    text: "",
+    text: "attack, sustain, release, silence",
     // Empty square - leave text as empty string
   },
   {
     id: 63,
-    text: "",
+    text: "myspace lost 50 million songs uploaded before 2015",
     // Empty square - leave text as empty string
   },
   {
     id: 64,
-    text: "",
+    text: "every cd i've ever owned has been scratched",
     // Empty square - leave text as empty string
   },
   {
     id: 65,
-    text: "",
+    text: "the library of alexandria was destroyed by fire in 48 BCE",
     // Empty square - leave text as empty string
   },
   {
     id: 66,
-    text: "",
-    // Empty square - leave text as empty string
+    type: 'hover',
+    defaultContent: (
+      <div
+        style={{
+          width: '100%',
+          height: '100%',
+          background: '#FFFFFF',
+          color: '#000000',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          textTransform: 'uppercase',
+          letterSpacing: '0.2em',
+          fontSize: '0.9rem',
+          fontWeight: '700',
+        }}
+      >
+        now
+      </div>
+    ),
+    hoverContent: (
+      <div
+        style={{
+          width: '100%',
+          height: '100%',
+          background: '#000000',
+          color: '#FFFFFF',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          textTransform: 'uppercase',
+          letterSpacing: '0.2em',
+          fontSize: '0.9rem',
+          fontWeight: '700',
+        }}
+      >
+        later
+      </div>
+    ),
   },
   {
     id: 67,
@@ -588,32 +838,106 @@ export const squaresData = [
   },
   {
     id: 68,
-    text: "",
-    // Empty square - leave text as empty string
+    customContent: true,
+    content: (
+      <div style={{ width: '100%', height: '100%', background: 'repeating-linear-gradient(90deg, #fff 0, #fff 1px, #000 1px, #000 2px)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <div style={{ background: 'rgba(0,0,0,0.7)', padding: '0.5rem 0.75rem', fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '0.15em' }}>
+          this block failed to render
+        </div>
+      </div>
+    ),
   },
   {
     id: 69,
-    text: "",
+    customContent: true,
+    content: (
+      <div style={{ textAlign: 'center', padding: '1rem', display: 'flex', color: 'white  ', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%' }}>
+        <div style={{ fontSize: '5rem' }}>𝇩</div>
+    
+      </div>
+    ),
     // Empty square - leave text as empty string
   },
   {
     id: 70,
-    text: "",
+    text: "you'll die someday",
     // Empty square - leave text as empty string
   },
   {
     id: 71,
-    text: "",
-    // Empty square - leave text as empty string
+    customContent: true,
+    content: (
+      <div style={{ 
+        width: '100%', 
+        height: '100%', 
+        display: 'flex', 
+        alignItems: 'center', 
+        justifyContent: 'center' 
+      }}>
+        <div style={{
+          width: '60px',
+          height: '60px',
+          border: '3px solid rgba(255,255,255,0.1)',
+          borderTop: '3px solid #FCB53B',
+          borderRadius: '50%',
+          animation: 'spin 1.2s linear infinite',
+        }}>
+          <style>{`
+            @keyframes spin {
+              0% { transform: rotate(0deg); }
+              100% { transform: rotate(360deg); }
+            }
+          `}</style>
+        </div>
+      </div>
+    ),
   },
   {
     id: 72,
-    text: "",
-    // Empty square - leave text as empty string
+    customContent: true,
+    content: (
+      <div
+        style={{
+          width: '100%',
+          height: '100%',
+          position: 'relative',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        {['1px,1px', '2px,2px', '3px,3px'].map((offset, i) => (
+          <div
+            key={i}
+            style={{
+              position: 'absolute',
+              transform: `translate(${offset.split(',')[0]}, ${offset.split(',')[1]})`,
+              fontSize: '2.4rem',
+              fontWeight: '900',
+              textTransform: 'uppercase',
+              letterSpacing: '0.35em',
+              opacity: 0.15 + 0.25 * (3 - i),
+            }}
+          >
+            time
+          </div>
+        ))}
+        <div
+          style={{
+            fontSize: '2.4rem',
+            fontWeight: '900',
+            textTransform: 'uppercase',
+            letterSpacing: '0.35em',
+          }}
+        >
+          time
+        </div>
+      </div>
+    ),
   },
   {
     id: 73,
-    text: "",
+    text: "block 73 of 73",
     // Empty square - leave text as empty string
   },
   
@@ -622,4 +946,4 @@ export const squaresData = [
 ]
 
 // How many total empty squares to add after your custom ones
-export const emptySquaresCount = 54
+export const emptySquaresCount = 0
