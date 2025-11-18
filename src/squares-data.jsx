@@ -1,5 +1,7 @@
+import { useEffect, useState } from 'react'
 import SongADayTicker from './components/SongADayTicker'
 import { assetPath } from './lib/assetPath'
+
 
 const timeStackLayers = [
   { color: '#FFFFFF', opacity: 1 },
@@ -13,6 +15,53 @@ const timeStackLayers = [
 // - clickable: true (makes it open a modal when clicked)
 // - modalContent: text to show in the modal
 // - type: 'title' or 'countdown' for special squares
+
+const START_COUNT = 9999999999
+
+function formatCountdown(value) {
+  // Format as 9 : 999 : 999 : 999
+  return value
+    .toString()
+    .padStart(10, '0')
+    .replace(/\B(?=(\d{3})+(?!\d))/g, ':')
+}
+
+function CountdownBlock() {
+  const [value, setValue] = useState(START_COUNT)
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setValue((v) => (v > 0 ? v - 1 : 0))
+    }, 1000)
+
+    return () => clearInterval(id)
+  }, [])
+
+  return (
+    <div
+      style={{
+        width: '100%',
+        height: '100%',
+        background: '#000',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        fontFamily: 'monospace',
+        color: '#0f0',
+        letterSpacing: '0.15em',
+      }}
+    >
+      <div style={{ fontSize: '0.75rem', opacity: 0.7, marginBottom: '0.25rem' }}>
+        countdown
+      </div>
+      <div style={{ fontSize: '1.4rem' }}>
+        {formatCountdown(value)}
+      </div>
+    </div>
+  )
+}
+
 
 export const squaresData = [
   {
@@ -607,9 +656,44 @@ export const squaresData = [
     ),
   },
   {
-    id: 49,
-    text: "",
-    // Empty square - leave text as empty string
+    id: 80,
+    type: 'hover',
+    defaultContent: (
+      <div
+        style={{
+          width: '100%',
+          height: '100%',
+          background: '#000',
+          color: '#fff',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          fontSize: '0.9rem',
+          textTransform: 'uppercase',
+          letterSpacing: '0.18em',
+        }}
+      >
+        this block remembers
+      </div>
+    ),
+    hoverContent: (
+      <div
+        style={{
+          width: '100%',
+          height: '100%',
+          background: '#000',
+          color: '#fff',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          fontSize: '0.9rem',
+          textTransform: 'uppercase',
+          letterSpacing: '0.18em',
+        }}
+      >
+        this block forgets
+      </div>
+    ),
   },
   {
     id: 50,
@@ -632,8 +716,9 @@ export const squaresData = [
   },
   {
     id: 52,
-    text: "",
-    // Empty square - leave text as empty string
+    customContent: true,
+  content: <CountdownBlock />,
+    
   },
   {
     id: 53,
@@ -687,9 +772,30 @@ export const squaresData = [
     // Empty square - leave text as empty string
   },
   {
-    id: 56,
-    text: "",
-    // Empty square - leave text as empty string
+    id: 82,
+    customContent: true,
+    content: (
+      <div
+        style={{
+          width: '100%',
+          height: '100%',
+          display: 'flex',
+          justifyContent: 'space-around',
+          alignItems: 'center',
+        }}
+      >
+        {Array.from({ length: 7 }).map((_, i) => (
+          <div
+            key={i}
+            style={{
+              width: '2px',
+              height: i === 3 ? '80%' : '40%',
+              background: 'rgba(255,255,255,0.8)',
+            }}
+          />
+        ))}
+      </div>
+    ),
   },
   {
     id: 57,
@@ -746,7 +852,7 @@ export const squaresData = [
   },
   {
     id: 58,
-    text: "",
+    text: "digital files decay when no one maintains them",
     // Empty square - leave text as empty string
   },
   {
@@ -772,8 +878,35 @@ export const squaresData = [
   },
   {
     id: 62,
-    text: "attack, sustain, release, silence",
-    // Empty square - leave text as empty string
+    customContent: true,
+    content: (
+      <div
+        style={{
+          width: '100%',
+          height: '100%',
+          background: '#111',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          gap: '0.6rem',
+          fontFamily: 'monospace',
+          textTransform: 'uppercase',
+          letterSpacing: '0.2em',
+          fontSize: '0.9rem',
+        }}
+      >
+        <div
+          style={{
+            width: '14px',
+            height: '14px',
+            borderRadius: '50%',
+            background: '#A72703',
+            boxShadow: '0 0 10px #A72703',
+          }}
+        />
+        <span>rec</span>
+      </div>
+    ),
   },
   {
     id: 63,
@@ -834,8 +967,7 @@ export const squaresData = [
   },
   {
     id: 67,
-    text: "",
-    // Empty square - leave text as empty string
+    text: "attack, sustain, release, silence",
   },
   {
     id: 68,
