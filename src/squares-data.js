@@ -1,3 +1,5 @@
+import { assetPath } from './lib/assetPath'
+
 // Edit this file to add content to your squares!
 // Each square can have:
 // - text: simple text string
@@ -23,7 +25,7 @@ export const squaresData = [
   {
     id: 4,
     type: 'image',
-    image: '/images/nippur-cuniform.png',
+    image: assetPath('images/nippur-cuniform.png'),
     clickable: true,
     modalContent: 'This is a drawing of a cuniform tablet containing musical instructions from Babylonia circa ~2000 BCE. No one can quite agree on how exactly to read it.',
   },

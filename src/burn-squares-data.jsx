@@ -1,6 +1,7 @@
 import BurnNotesManager from './components/BurnNotesManager'
 import BurnLeaderboard from './components/BurnLeaderboard'
 import LifespanRevealCalculator from './components/LifespanRevealCalculator'
+import { assetPath } from './lib/assetPath'
 
 export const burnSquaresData = [
   {
@@ -300,7 +301,7 @@ export const burnSquaresData = [
   {
     id: 18,
     type: 'image',
-    image: '/images/troll.png',
+    image: assetPath('images/troll.png'),
     clickable: true,
     modalKey: 'fuckinTrolls',
     requiresWallet: true,
@@ -308,7 +309,7 @@ export const burnSquaresData = [
   {
     id: 19,
     type: 'image',
-    image: '/images/goat.png',
+    image: assetPath('images/goat.png'),
     clickable: true,
     modalKey: 'fuckinGoats',
     requiresWallet: true,
@@ -316,7 +317,7 @@ export const burnSquaresData = [
   {
     id: 20,
     type: 'image',
-    image: '/images/deaf.gif',
+    image: assetPath('images/deaf.gif'),
     clickable: true,
     modalKey: 'notDeafBeef',
     requiresWallet: true,
@@ -324,7 +325,7 @@ export const burnSquaresData = [
   {
     id: 21,
     type: 'image',
-    image: '/images/never.png',
+    image: assetPath('images/never.png'),
     clickable: true,
     modalKey: 'thisSongWillNeverDie',
     requiresWallet: true,
@@ -332,7 +333,7 @@ export const burnSquaresData = [
   {
     id: 22,
     type: 'image',
-    image: '/images/taxes.png',
+    image: assetPath('images/taxes.png'),
     clickable: true,
     modalKey: 'taxesCoin',
     requiresWallet: true,
@@ -340,7 +341,7 @@ export const burnSquaresData = [
   {
     id: 23,
     type: 'image',
-    image: '/images/zorb.png',
+    image: assetPath('images/zorb.png'),
     clickable: true,
     modalKey: 'baseEditions',
     requiresWallet: true,
@@ -348,7 +349,7 @@ export const burnSquaresData = [
   {
     id: 24,
     type: 'image',
-    image: '/images/merge.jpg',
+    image: assetPath('images/merge.jpg'),
     clickable: true,
     modalKey: 'merge',
     // Fill in copy
@@ -357,7 +358,7 @@ export const burnSquaresData = [
   {
     id: 25,
     type: 'image',
-    image: '/images/iceking.jpg',
+    image: assetPath('images/iceking.jpg'),
     clickable: true,
     modalKey: 'iceKing',
     // Fill in copy
@@ -366,7 +367,7 @@ export const burnSquaresData = [
   {
     id: 26,
     type: 'image',
-    image: '/images/pmmishigas.gif',
+    image: assetPath('images/pmmishigas.gif'),
     clickable: true,
     modalKey: 'pmMishegas',
     // Fill in copy
@@ -375,7 +376,7 @@ export const burnSquaresData = [
   {
     id: 27,
     type: 'image',
-    image: '/images/miggles.jpg',
+    image: assetPath('images/miggles.jpg'),
     clickable: true,
     modalKey: 'mrMiggles',
     requiresWallet: true,
@@ -383,7 +384,7 @@ export const burnSquaresData = [
   {
     id: 28,
     type: 'image',
-    image: '/images/stand.png',
+    image: assetPath('images/stand.png'),
     clickable: true,
     modalKey: 'standWithCrypto',
     // Fill in copy
@@ -392,7 +393,7 @@ export const burnSquaresData = [
   {
     id: 29,
     type: 'image',
-    image: '/images/miggles2.png',
+    image: assetPath('images/miggles2.png'),
     clickable: true,
     modalKey: 'mrMiggles2',
     requiresWallet: true,
@@ -400,7 +401,7 @@ export const burnSquaresData = [
   {
     id: 30,
     type: 'image',
-    image: '/images/cbtc.png',
+    image: assetPath('images/cbtc.png'),
     clickable: true,
     modalKey: 'cbtc',
     requiresWallet: true,
@@ -408,7 +409,7 @@ export const burnSquaresData = [
   {
     id: 31,
     type: 'image',
-    image: '/images/summer.png',
+    image: assetPath('images/summer.png'),
     clickable: true,
     modalKey: 'summerNeverEnds',
     requiresWallet: true,

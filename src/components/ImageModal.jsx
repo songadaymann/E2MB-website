@@ -1,8 +1,9 @@
 import { useCallback, useEffect, useRef } from 'react'
 import { Modal, ModalOverlay, ModalContent, Box } from '@chakra-ui/react'
+import { assetPath } from '../lib/assetPath'
 
-const README_IMAGE_SRC = '/images/readme.png'
-const README_AUDIO_SRC = '/audio/makesong.mp3'
+const README_IMAGE_SRC = assetPath('images/readme.png')
+const README_AUDIO_SRC = assetPath('audio/makesong.mp3')
 
 function ImageModal({ isOpen, onClose, imageSrc }) {
   const audioRef = useRef(null)

@@ -1,4 +1,5 @@
 import SongADayTicker from './components/SongADayTicker'
+import { assetPath } from './lib/assetPath'
 
 const timeStackLayers = [
   { color: '#FFFFFF', opacity: 1 },
@@ -75,7 +76,7 @@ export const squaresData = [
     ),
     clickable: true,
     showImageModal: true,
-    image: '/images/readme.png',
+    image: assetPath('images/readme.png'),
   },
   {
     id: 4,
@@ -88,7 +89,7 @@ export const squaresData = [
   {
     id: 6,
     type: 'image',
-    image: '/images/nippur-cuniform.png',
+    image: assetPath('images/nippur-cuniform.png'),
     clickable: true,
     modalContent: 'This is a drawing of a cuniform tablet containing musical instructions from Babylonia circa ~2000 BCE. No one can quite agree on how exactly to read it.',
   },
@@ -157,7 +158,7 @@ export const squaresData = [
   {
     id: 12,
     type: 'image',
-    image: '/images/dream.png',
+    image: assetPath('images/dream.png'),
     clickable: true,
     modalContent: "the dream house is a long running site specific art piece by La Monte Young and Marian Zazeela. A constantly sounding chord of sine waves has been rinnging out since 1993. There is no set length. It could go forever. <a href=\"https://www.melafoundation.org/\" target=\"_blank\" rel=\"noreferrer\">You can even visit the dream house!</a>",
   },
@@ -217,7 +218,7 @@ export const squaresData = [
   {
     id: 16,
     type: 'image',
-    image: '/images/ASLSP.png',
+    image: assetPath('images/ASLSP.png'),
     clickable: true,
     modalContent: "the score for John Cage's As Slow As Possible",
   },
@@ -243,7 +244,7 @@ export const squaresData = [
   {
     id: 20,
     type: 'image',
-    image: '/images/clock.png',
+    image: assetPath('images/clock.png'),
     clickable: true,
     modalTitle: 'the clock is still under construction and has been funded by Jeff Bezos.',
   
@@ -256,7 +257,7 @@ export const squaresData = [
   {
     id: 22,
     type: 'image',
-    image: '/images/longplayer.png',
+    image: assetPath('images/longplayer.png'),
     clickable: true,
     modalTitle: 'Listen: Longplayer has been playing since 1/1/2000',
     modalUrl: 'http://icecast.spc.org:8000/longplayer',
@@ -270,7 +271,7 @@ export const squaresData = [
   {
     id: 24,
     type: 'image',
-    image: '/images/halberstadt.jpg',
+    image: assetPath('images/halberstadt.jpg'),
     clickable: true,
     modalTitle: 'Listen: The note changing on this organ in 2024. The next change is 2026.',
     modalUrl: 'https://youtu.be/L1a1CpaBovQ?si=hmHKMbqE7oUVJdBK&t=1044',
@@ -328,7 +329,7 @@ export const squaresData = [
   {
     id: 29,
     type: 'image',
-    image: '/images/bull.jpg',
+    image: assetPath('images/bull.jpg'),
     clickable: true,
     modalTitle: "listen to a small sammple of 310: ΩΣPx0(2^18×5^18)p*k*k*k",
     modalUrl: 'https://www.youtube.com/watch?v=OXHhc5PaFXw',
@@ -354,7 +355,7 @@ export const squaresData = [
   {
     id: 29,
     type: 'image',
-    image: '/images/organoid.png',
+    image: assetPath('images/organoid.png'),
     clickable: true,
     modalTitle: "Listen: A brain organoid grown from Alvin's blood triggers electical impulses that make sounds on the brass plates.",
     modalUrl: 'https://youtu.be/Xp1wgibBlMU?si=bzd09cp-GXJLMmrH',
@@ -375,7 +376,7 @@ export const squaresData = [
   {
     id: 32,
     type: 'image',
-    image: '/images/notes.png',
+    image: assetPath('images/notes.png'),
     clickable: true,
     modalContent: 'Note a year',
   },
@@ -387,7 +388,7 @@ export const squaresData = [
   {
     id: 34,
     type: 'image',
-    image: '/images/notes1.png',
+    image: assetPath('images/notes1.png'),
     clickable: true,
     modalContent: 'Note a year',
   },

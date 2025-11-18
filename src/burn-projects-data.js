@@ -1,7 +1,9 @@
+import { assetPath } from './lib/assetPath'
+
 export const burnProjectDetails = {
   fuckinTrolls: {
     name: 'Fuckin Trolls',
-    image: '/images/troll.png',
+    image: assetPath('images/troll.png'),
     supply: '9982',
     mintEnded: true,
     openseaUrl: 'https://opensea.io/collection/thefuckintrolls',
@@ -34,7 +36,7 @@ export const burnProjectDetails = {
   },
   fuckinGoats: {
     name: 'Fuckin Goats',
-    image: '/images/goat.png',
+    image: assetPath('images/goat.png'),
     supply: '352',
     mintEnded: false,
     openseaUrl: 'https://opensea.io/collection/just-some-fuckin-goats',
@@ -54,7 +56,7 @@ export const burnProjectDetails = {
   },
   notDeafBeef: {
     name: 'NotDeafBeef',
-    image: '/images/deaf.gif',
+    image: assetPath('images/deaf.gif'),
     supply: '717',
     mintEnded: true,
     openseaUrl: 'https://opensea.io/collection/notdeafbeef',
@@ -95,7 +97,7 @@ export const burnProjectDetails = {
   },
   thisSongWillNeverDie: {
     name: 'This Song Will Never Die',
-    image: '/images/never.png',
+    image: assetPath('images/never.png'),
     supply: '36,889',
     mintEnded: true,
     openseaUrl: 'https://etherscan.io/address/0xd59094CF2feB9EbEb61a21C1f3f935D63dAEB0d1',
@@ -125,7 +127,7 @@ export const burnProjectDetails = {
   },
   merge: {
     name: 'Merge Album',
-    image: '/images/merge.jpg',
+    image: assetPath('images/merge.jpg'),
     supply: '95',
     mintEnded: true,
     openseaUrl: 'https://opensea.io/collection/the-merge-oo9yauvaqc',
@@ -136,7 +138,7 @@ export const burnProjectDetails = {
   },
   iceKing: {
     name: 'Ice King Christmas',
-    image: '/images/iceking.jpg',
+    image: assetPath('images/iceking.jpg'),
     supply: '22',
     mintEnded: true,
     openseaUrl: 'https://opensea.io/collection/a-very-ice-king-christmas',
@@ -147,7 +149,7 @@ export const burnProjectDetails = {
   },
   baseEditions: {
     name: 'Zora Base Editions',
-    image: '/images/zorb.png',
+    image: assetPath('images/zorb.png'),
     supply: 'variable',
     mintEnded: true,
     openseaUrl: 'https://opensea.io/collection/song-a-day-zora-s-base-editions',
@@ -169,7 +171,7 @@ export const burnProjectDetails = {
   },
   mrMiggles: {
     name: 'Mr. Miggles',
-    image: '/images/miggles.jpg',
+    image: assetPath('images/miggles.jpg'),
     supply: '43189',
     mintEnded: false,
     openseaUrl: 'https://opensea.io/collection/mr-miggles-song-a-day-5678',
@@ -180,7 +182,7 @@ export const burnProjectDetails = {
   },
   standWithCrypto: {
     name: 'Stand With Crypto',
-    image: '/images/stand.png',
+    image: assetPath('images/stand.png'),
     supply: '84764',
     mintEnded: null,
     openseaUrl: 'https://basescan.org/token/0x2382456097cc12ce54052084e9357612497fd6be',
@@ -191,7 +193,7 @@ export const burnProjectDetails = {
   },
   mrMiggles2: {
     name: 'Mr. Miggles 2: The Miggling',
-    image: '/images/miggles2.png',
+    image: assetPath('images/miggles2.png'),
     supply: '4024',
     mintEnded: null,
     openseaUrl: '',
@@ -202,7 +204,7 @@ export const burnProjectDetails = {
   },
   builtOnEthereum: {
     name: 'Built On Ethereum',
-    image: '/images/zorb.png',
+    image: assetPath('images/zorb.png'),
     supply: '',
     mintEnded: null,
     openseaUrl: '',
@@ -213,7 +215,7 @@ export const burnProjectDetails = {
   },
   cbtc: {
     name: 'cbBTC',
-    image: '/images/cbtc.png',
+    image: assetPath('images/cbtc.png'),
     supply: '4,613',
     mintEnded: null,
     openseaUrl: '',
@@ -224,7 +226,7 @@ export const burnProjectDetails = {
   },
   summerNeverEnds: {
     name: 'Summer Never Ends',
-    image: '/images/summer.png',
+    image: assetPath('images/summer.png'),
     supply: '3760',
     mintEnded: null,
     openseaUrl: 'https://opensea.io/collection/summer-never-ends-song-a-day-5733',
