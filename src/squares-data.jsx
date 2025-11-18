@@ -186,7 +186,7 @@ export const squaresData = [
       </div>
     ),
     clickable: true,
-    navigateTo: '/burn',
+    navigateTo: assetPath('burn'),
     
   },
   {

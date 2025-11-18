@@ -10,6 +10,7 @@ import { burnSquaresData, burnEmptySquaresCount } from './burn-squares-data.jsx'
 import { burnProjectDetails } from './burn-projects-data.js'
 import { useInteractiveMelody } from './hooks/useInteractiveMelody'
 import { BurnWalletProvider, useBurnWallet } from './context/BurnWalletContext'
+import { assetPath } from './lib/assetPath'
 
 function BurnView() {
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -131,7 +132,7 @@ function BurnView() {
           color="white"
           _hover={{ bg: 'rgba(255,255,255,0.05)' }}
           onClick={() => {
-            window.location.href = '/'
+            window.location.href = assetPath('')
           }}
         >
           &larr; back
