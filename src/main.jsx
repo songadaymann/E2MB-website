@@ -19,7 +19,19 @@ const theme = extendTheme({
   },
 })
 
-const normalisedPath = window.location.pathname.replace(/\/+$/, '') || '/'
+const basePathRaw = import.meta.env.BASE_URL || '/'
+const basePath = basePathRaw === '/' ? '/' : basePathRaw.replace(/\/+$/, '')
+const rawPath = window.location.pathname
+
+const relativePath = (() => {
+  if (basePath && basePath !== '/' && rawPath.startsWith(basePath)) {
+    const stripped = rawPath.slice(basePath.length) || '/'
+    return stripped.startsWith('/') ? stripped : `/${stripped}`
+  }
+  return rawPath
+})()
+
+const normalisedPath = relativePath.replace(/\/+$/, '') || '/'
 const RootComponent = normalisedPath === '/burn' ? Burn : App
 
 ReactDOM.createRoot(document.getElementById('root')).render(
