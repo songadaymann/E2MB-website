@@ -73,9 +73,12 @@ function App() {
     <Box minH="100vh" bg="black" p={2}>
       <Box
         display="grid"
-        gridTemplateColumns="repeat(auto-fit, 256px)"
+        gridTemplateColumns={{
+          base: "repeat(2, minmax(0, 1fr))",
+          md: "repeat(auto-fit, 256px)"
+        }}
         gap={2}
-        gridAutoRows="256px"
+      // gridAutoRows="256px" // Removed to allow aspect-ratio to control height
       >
         {allSquares.map((square) => {
           if (square.hidden) return null
@@ -88,7 +91,8 @@ function App() {
               key={square.id}
               gridColumn={gridColumn}
               gridRow={gridRow}
-              height="100%"
+              width="100%"
+              sx={{ aspectRatio: '1 / 1' }}
             >
               <Square
                 square={square}

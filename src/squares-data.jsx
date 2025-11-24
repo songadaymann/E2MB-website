@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { Box } from '@chakra-ui/react'
 import SongADayTicker from './components/SongADayTicker'
 import { assetPath } from './lib/assetPath'
 
@@ -19,11 +20,11 @@ const timeStackLayers = [
 const START_COUNT = 9999999999
 
 function formatCountdown(value) {
-  // Format as 9 : 999 : 999 : 999
+  // 9 999 999 999 (spaces between thousands)
   return value
     .toString()
     .padStart(10, '0')
-    .replace(/\B(?=(\d{3})+(?!\d))/g, ':')
+    .replace(/\B(?=(\d{3})+(?!\d))/g, ' ')
 }
 
 function CountdownBlock() {
@@ -68,35 +69,70 @@ export const squaresData = [
     id: 1,
     customContent: true,
     content: (
-      <div style={{ 
-        fontWeight: '900',
-        fontSize: '3.2rem',
-        lineHeight: '1.1',
-        textAlign: 'left',
-        padding: '13px',
-        position: 'relative',
-        display: 'flex',
-        alignItems: 'left',
-        justifyContent: 'left',
-        width: '100%',
-        height: '100%'
-      }}>
-        <div style={{ position: 'relative' }}>
-          <div style={{ 
-            position: 'absolute',
-            top: '-8px',
-            left: '-9px',
-            width: '231px',
-            height: '158px',
-            border: '2px solid white',
-            zIndex: -1
-          }} />
-          <div style={{ display: 'block', letterSpacing: '0.27em' }}>EVERY</div>
-          <div style={{ display: 'block', letterSpacing: '0.95em' }}>TWO</div>
-          <div style={{ display: 'block', letterSpacing: '0' }}>MILLION</div>
-          <div style={{ display: 'block', letterSpacing: '0.065em' }}>BLOCKS</div>
-        </div>
-      </div>
+      <>
+        {/* Desktop Layout - Original Pixel Perfect */}
+        <Box
+          display={{ base: 'none', md: 'flex' }}
+          fontWeight="900"
+          fontSize="3.2rem"
+          lineHeight="1.1"
+          textAlign="left"
+          p="13px"
+          position="relative"
+          alignItems="flex-start"
+          justifyContent="flex-start"
+          w="100%"
+          h="100%"
+        >
+          <Box position="relative">
+            <Box
+              position="absolute"
+              top="-8px"
+              left="-9px"
+              w="231px"
+              h="158px"
+              border="2px solid white"
+              zIndex={-1}
+            />
+            <Box display="block" letterSpacing="0.27em">EVERY</Box>
+            <Box display="block" letterSpacing="0.95em">TWO</Box>
+            <Box display="block" letterSpacing="0">MILLION</Box>
+            <Box display="block" letterSpacing="0.065em">BLOCKS</Box>
+          </Box>
+        </Box>
+
+        {/* Mobile Layout - Responsive */}
+        <Box
+          display={{ base: 'flex', md: 'none' }}
+          fontWeight="900"
+          fontSize="clamp(1.5rem, 8vw, 2.2rem)"
+          lineHeight="1.1"
+          textAlign="left"
+          p="10px"
+          position="relative"
+          alignItems="flex-start"
+          justifyContent="flex-start"
+          w="100%"
+          h="100%"
+        >
+          <Box position="relative" w="100%">
+            <Box
+              position="absolute"
+              top="-6px"
+              left="-6px"
+              w="100%"
+              h="100%"
+              minH="120px"
+              border="2px solid white"
+              zIndex={-1}
+            />
+            <Box display="block" letterSpacing="0.27em">EVERY</Box>
+            <Box display="block" letterSpacing="0.95em">TWO</Box>
+            <Box display="block" letterSpacing="0">MILLION</Box>
+            <Box display="block" letterSpacing="0.065em">BLOCKS</Box>
+          </Box>
+        </Box>
+      </>
     ),
   },
   {
@@ -104,7 +140,7 @@ export const squaresData = [
     customContent: true,
     content: (
       <div style={{ textAlign: 'center', padding: '1rem', color: '#84994F', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%' }}>
-        <div style={{ fontSize: '3rem' }}>mint</div>
+        <div style={{ fontSize: 'clamp(2rem, 10vw, 3rem)' }}>mint</div>
       </div>
     ),
     clickable: true,
@@ -115,7 +151,7 @@ export const squaresData = [
     type: 'hover',
     defaultContent: (
       <div style={{ textAlign: 'center', padding: '1rem', display: 'flex', color: '#FCB53B', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%' }}>
-        <div style={{ fontSize: '3rem', fontWeight: 'bold', margin: '0.5rem 0' }}>readme</div>
+        <div style={{ fontSize: 'clamp(2rem, 10vw, 3rem)', fontWeight: 'bold', margin: '0.5rem 0' }}>readme</div>
       </div>
     ),
     hoverContent: (
@@ -151,8 +187,8 @@ export const squaresData = [
     customContent: true,
     content: (
       <div style={{ textAlign: 'center', padding: '1rem', display: 'flex', color: 'white  ', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%' }}>
-        <div style={{ fontSize: '5rem' }}>𝆶</div>
-    
+        <div style={{ fontSize: 'clamp(3rem, 15vw, 5rem)' }}>𝆶</div>
+
       </div>
     ),
   },
@@ -171,7 +207,7 @@ export const squaresData = [
       >
         <div
           style={{
-            fontSize: '3.5rem',
+            fontSize: 'clamp(2rem, 10vw, 3.5rem)',
             fontWeight: '900',
             letterSpacing: '0.35rem',
             textTransform: 'lowercase',
@@ -186,16 +222,16 @@ export const squaresData = [
       </div>
     ),
     clickable: true,
-    navigateTo: assetPath('burn'),
-    
+    navigateTo: '/burn',
+
   },
   {
     id: 10,
     customContent: true,
     content: (
       <div style={{ textAlign: 'center', padding: '1rem', display: 'flex', color: 'white  ', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%' }}>
-        <div style={{ fontSize: '5rem' }}>𝇛</div>
-    
+        <div style={{ fontSize: 'clamp(3rem, 15vw, 5rem)' }}>𝇛</div>
+
       </div>
     ),
   },
@@ -230,7 +266,7 @@ export const squaresData = [
           <div
             key={index}
             style={{
-              fontSize: '4rem',
+              fontSize: 'clamp(2rem, 10vw, 4rem)',
               fontWeight: '900',
               textTransform: 'uppercase',
               letterSpacing: '0.35rem',
@@ -250,7 +286,7 @@ export const squaresData = [
     type: 'hover',
     defaultContent: (
       <div style={{ textAlign: 'center', padding: '1rem', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%' }}>
-        <div style={{ fontSize: '7rem', fontWeight: 'bold', margin: '0.5rem 0' }}>𝄐</div>
+        <div style={{ fontSize: 'clamp(4rem, 20vw, 7rem)', fontWeight: 'bold', margin: '0.5rem 0' }}>𝄐</div>
       </div>
     ),
     hoverContent: (
@@ -276,8 +312,8 @@ export const squaresData = [
     customContent: true,
     content: (
       <div style={{ textAlign: 'center', padding: '1rem', display: 'flex', color: 'white  ', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%' }}>
-        <div style={{ fontSize: '5rem' }}>𝅁</div>
-    
+        <div style={{ fontSize: 'clamp(3rem, 15vw, 5rem)' }}>𝅁</div>
+
       </div>
     ),
   },
@@ -296,7 +332,7 @@ export const squaresData = [
     image: assetPath('images/clock.png'),
     clickable: true,
     modalTitle: 'the clock is still under construction and has been funded by Jeff Bezos.',
-  
+
   },
   {
     id: 21,
@@ -311,7 +347,7 @@ export const squaresData = [
     modalTitle: 'Listen: Longplayer has been playing since 1/1/2000',
     modalUrl: 'http://icecast.spc.org:8000/longplayer',
   },
-  
+
   {
     id: 23,
     text: "in 2001, the organ in this church began to play As Slow As Possible. \n\nthe performance is set to end in 2640",
@@ -333,7 +369,7 @@ export const squaresData = [
       <div style={{ textAlign: 'center', padding: '1rem', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%' }}>
         <SongADayTicker />
         <div style={{ fontSize: '0.9rem', marginTop: '0.75rem', opacity: 0.8 }}>
-        
+
         </div>
       </div>
     ),
@@ -385,13 +421,13 @@ export const squaresData = [
     modalContent: 'Bull of Heaven is a band known for releasing a lot of noise/drone music, much of lasting insanely long periods of time.',
     // Empty square - leave text as empty string
   },
-  
+
   {
     customContent: true,
     content: (
       <div style={{ textAlign: 'center', padding: '1rem', display: 'flex', color: 'white  ', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%' }}>
-        <div style={{ fontSize: '5rem' }}>𝀸</div>
-    
+        <div style={{ fontSize: 'clamp(3rem, 15vw, 5rem)' }}>𝀸</div>
+
       </div>
     ),
     // Empty square - leave text as empty string
@@ -411,7 +447,7 @@ export const squaresData = [
     modalContent: 'When learning of this, his daughter said, "That is so my dad"',
     // Empty square - leave text as empty string
   },
-  
+
   {
     id: 30,
     text: "in 2026, the first note of Every Two Million Blocks will begin playing for a year",
@@ -476,8 +512,8 @@ export const squaresData = [
     customContent: true,
     content: (
       <div style={{ textAlign: 'center', padding: '1rem', display: 'flex', color: 'white  ', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%' }}>
-        <div style={{ fontSize: '5rem' }}>𝆰</div>
-    
+        <div style={{ fontSize: 'clamp(3rem, 15vw, 5rem)' }}>𝆰</div>
+
       </div>
     ),
     // Empty square - leave text as empty string
@@ -511,9 +547,9 @@ export const squaresData = [
     id: 41,
     type: 'hover',
     defaultContent: (
-      <div style={{ 
-        width: '100%', 
-        height: '100%', 
+      <div style={{
+        width: '100%',
+        height: '100%',
         background: '#000',
         display: 'flex',
         alignItems: 'center',
@@ -522,7 +558,7 @@ export const squaresData = [
         overflow: 'hidden'
       }}>
         <div style={{
-          fontSize: '3em',
+          fontSize: 'clamp(1.5em, 8vw, 3em)',
           fontFamily: 'monospace',
           color: '#0f0',
           textShadow: '2px 2px 0 #f0f, -2px -2px 0 #0ff',
@@ -557,15 +593,15 @@ export const squaresData = [
       </div>
     ),
     hoverContent: (
-      <div style={{ 
-        textAlign: 'center', 
-        padding: '1rem', 
-        display: 'flex', 
-        flexDirection: 'column', 
-        alignItems: 'center', 
-        justifyContent: 'center', 
-        height: '100%', 
-        fontSize: '2rem', 
+      <div style={{
+        textAlign: 'center',
+        padding: '1rem',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: '100%',
+        fontSize: '2rem',
         fontWeight: 'bold',
         color: '#fff'
       }}>
@@ -585,8 +621,8 @@ export const squaresData = [
     customContent: true,
     content: (
       <div style={{ textAlign: 'center', padding: '1rem', display: 'flex', color: 'white  ', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%' }}>
-        <div style={{ fontSize: '5rem' }}>𝆏</div>
-    
+        <div style={{ fontSize: 'clamp(3rem, 15vw, 5rem)' }}>𝆏</div>
+
       </div>
     ),
     // Empty square - leave text as empty string
@@ -639,7 +675,7 @@ export const squaresData = [
       </div>
     ),
   },
-  
+
   {
     id: 47,
     text: "link rot",
@@ -650,8 +686,8 @@ export const squaresData = [
     customContent: true,
     content: (
       <div style={{ textAlign: 'center', padding: '1rem', display: 'flex', color: 'white  ', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%' }}>
-        <div style={{ fontSize: '5rem' }}>∞²</div>
-    
+        <div style={{ fontSize: 'clamp(3rem, 15vw, 5rem)' }}>∞²</div>
+
       </div>
     ),
   },
@@ -717,8 +753,8 @@ export const squaresData = [
   {
     id: 52,
     customContent: true,
-  content: <CountdownBlock />,
-    
+    content: <CountdownBlock />,
+
   },
   {
     id: 53,
@@ -860,8 +896,8 @@ export const squaresData = [
     customContent: true,
     content: (
       <div style={{ textAlign: 'center', padding: '1rem', display: 'flex', color: 'white  ', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%' }}>
-        <div style={{ fontSize: '5rem' }}>𝇟</div>
-    
+        <div style={{ fontSize: 'clamp(3rem, 15vw, 5rem)' }}>𝇟</div>
+
       </div>
     ),
     // Empty square - leave text as empty string
@@ -985,8 +1021,8 @@ export const squaresData = [
     customContent: true,
     content: (
       <div style={{ textAlign: 'center', padding: '1rem', display: 'flex', color: 'white  ', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%' }}>
-        <div style={{ fontSize: '5rem' }}>𝇩</div>
-    
+        <div style={{ fontSize: 'clamp(3rem, 15vw, 5rem)' }}>𝇩</div>
+
       </div>
     ),
     // Empty square - leave text as empty string
@@ -1000,12 +1036,12 @@ export const squaresData = [
     id: 71,
     customContent: true,
     content: (
-      <div style={{ 
-        width: '100%', 
-        height: '100%', 
-        display: 'flex', 
-        alignItems: 'center', 
-        justifyContent: 'center' 
+      <div style={{
+        width: '100%',
+        height: '100%',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center'
       }}>
         <div style={{
           width: '60px',
@@ -1045,7 +1081,7 @@ export const squaresData = [
             style={{
               position: 'absolute',
               transform: `translate(${offset.split(',')[0]}, ${offset.split(',')[1]})`,
-              fontSize: '2.4rem',
+              fontSize: 'clamp(1.5rem, 8vw, 2.4rem)',
               fontWeight: '900',
               textTransform: 'uppercase',
               letterSpacing: '0.35em',
@@ -1057,7 +1093,7 @@ export const squaresData = [
         ))}
         <div
           style={{
-            fontSize: '2.4rem',
+            fontSize: 'clamp(1.5rem, 8vw, 2.4rem)',
             fontWeight: '900',
             textTransform: 'uppercase',
             letterSpacing: '0.35em',
@@ -1073,9 +1109,9 @@ export const squaresData = [
     text: "block 73 of 73",
     // Empty square - leave text as empty string
   },
-  
 
-  
+
+
 ]
 
 // How many total empty squares to add after your custom ones
