@@ -97,6 +97,10 @@ function SquareModal({ isOpen, onClose, square }) {
   }
 
   const iframeSrc = resolveIframeSrc(square.modalUrl)
+  const stringModalContent =
+    typeof square.modalContent === 'string' ? square.modalContent : null
+  const shouldRenderSupplementalContent =
+    stringModalContent && (iframeSrc || square.image)
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} size="xl">
@@ -123,11 +127,13 @@ function SquareModal({ isOpen, onClose, square }) {
               alt="" 
               style={{ width: '100%', marginBottom: '1rem' }}
             />
+          ) : stringModalContent ? (
+            <Box dangerouslySetInnerHTML={{ __html: stringModalContent }} />
           ) : (
             square.modalContent || square.content
           )}
-          {square.modalContent && typeof square.modalContent === 'string' && (
-            <Box mt={4}>{square.modalContent}</Box>
+          {shouldRenderSupplementalContent && (
+            <Box mt={4} dangerouslySetInnerHTML={{ __html: stringModalContent }} />
           )}
         </ModalBody>
         <ModalFooter>

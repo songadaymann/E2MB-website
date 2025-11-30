@@ -137,17 +137,6 @@ export const squaresData = [
   },
   {
     id: 2,
-    customContent: true,
-    content: (
-      <div style={{ textAlign: 'center', padding: '1rem', color: '#84994F', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%' }}>
-        <div style={{ fontSize: 'clamp(2rem, 10vw, 3rem)' }}>mint</div>
-      </div>
-    ),
-    clickable: true,
-    showMintModal: true,
-  },
-  {
-    id: 3,
     type: 'hover',
     defaultContent: (
       <div style={{ textAlign: 'center', padding: '1rem', display: 'flex', color: '#FCB53B', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%' }}>
@@ -162,6 +151,144 @@ export const squaresData = [
     clickable: true,
     showImageModal: true,
     image: assetPath('images/readme.png'),
+  },
+  {
+    id: 3,
+    customContent: true,
+    content: (
+      <Box
+        w="100%"
+        h="100%"
+        bg="#111"
+        p={4}
+        fontFamily="monospace"
+        fontSize="xs"
+        color="green.400"
+        overflow="hidden"
+        display="flex"
+        flexDirection="column"
+        justifyContent="center"
+        alignItems="center"
+        textAlign="center"
+      >
+        <Box fontSize="2xl" mb={2}>{'{}'}</Box>
+        <Box>view code</Box>
+      </Box>
+    ),
+    clickable: true,
+    showCodeModal: true,
+    modalTitle: 'The Markov Chain',
+    modalDescription: 'This markov chain lives onchain and is used to create one note per year, potentially forever.',
+    code: `// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
+
+import "../interfaces/ISongAlgorithm.sol";
+
+contract SongAlgorithm is ISongAlgorithm {
+    // ===== Types =====
+    // Event struct lives in ISongAlgorithm
+
+    struct LeadState {
+        uint8 chord;          // diatonic chord index (0-6)
+        uint32 rng;           // 32-bit RNG state
+        uint16 notesSinceRest;
+    }
+
+    struct BassState {
+        uint8 chord;          // diatonic chord index (0-6)
+        uint32 rng;           // 32-bit RNG state
+        int16 previousPitch;  // for repetition logic
+    }
+
+    // ===== Constants =====
+    uint16 constant QUARTER       = 480;
+    uint16 constant DOTTED_QUART  = 720;
+    uint16 constant HALF_NOTE     = 960;
+    uint16 constant WHOLE         = 1920;
+    uint16 constant EIGHTH        = 240;
+    uint16 constant SIXTEENTH     = 120;
+    uint8 constant PHRASE_LEN     = 8;
+    uint8 constant BASE_KEY       = 3;  // Eb major (3 semitones up from C)
+
+    // Diatonic chord lookup for Eb major (arrays can't be constexpr in Solidity)
+    function _getDiatonicChord(uint8 index) private pure returns (uint8) {
+        if (index == 0) return 6;  // Eb major (I)
+        if (index == 1) return 9;  // F minor (ii)  
+        if (index == 2) return 11; // G minor (iii)
+        if (index == 3) return 16; // Ab major (IV)
+        if (index == 4) return 20; // Bb major (V)
+        if (index == 5) return 1;  // C minor (vi)
+        if (index == 6) return 5;  // D diminished (vii°)
+        return 6; // tonic fallback
+    }
+
+    // ===== Phrase Grammar =====
+    function _phraseType(uint32 position) private pure returns (uint8) {
+        uint8 m = uint8((position / PHRASE_LEN) % 7);
+        if (m == 0 || m == 3 || m == 6) return 0;  // A
+        if (m == 1 || m == 4) return 1;            // A'
+        if (m == 2) return 2;                      // B
+        return 3;                                  // C
+    }
+
+    // ===== RNG (LCG, 32-bit) =====
+    function _adv(uint32 state, uint32 seedMod) private pure returns (uint32) {
+        unchecked {
+            return state * 1664525 + 1013904223 + seedMod;
+        }
+    }
+
+    function _mix(uint32 a, uint32 b) private pure returns (uint32) {
+        unchecked {
+            uint32 s = a ^ (b * 0x9E3779B9);
+            s ^= (s << 13);
+            s ^= (s >> 17);
+            s ^= (s << 5);
+            return s;
+        }
+    }
+
+    // ... (additional helper functions)
+
+    // ===== Public API =====
+    function generateBeat(uint32 beat, uint32 tokenSeed)
+        external pure override returns (Event memory lead, Event memory bass)
+    {
+        // Initialize deterministic state machines
+        LeadState memory L = LeadState({
+            chord: 0,  // Index 0 = Eb major
+            rng: 0xCAFEBABE,
+            notesSinceRest: 0
+        });
+        BassState memory B = BassState({
+            chord: 0,  // Index 0 = Eb major
+            rng: 0xDEAFBEEF,  // Match Python seed
+            previousPitch: -1
+        });
+
+        // Cycle every 365 beats (annual cadence)
+        uint32 effectiveBeat = beat % 365;
+        uint32 era = beat / 365;
+        
+        // Run sequence up to the requested beat
+        for (uint32 i = 0; i < effectiveBeat; i++) {
+            uint32 seed = _mix(tokenSeed, i);
+            (, L) = _leadGenerateStep(i, seed, L);
+            (, B) = _bassGenerateStep(i, seed ^ 0x7777, B);
+        }
+
+        // Emit the requested beat
+        uint32 sNow = _mix(tokenSeed, effectiveBeat);
+        (lead, L) = _leadGenerateStep(effectiveBeat, sNow, L);
+        (bass, B) = _bassGenerateStep(effectiveBeat, sNow ^ 0x7777, B);
+    }
+
+    function generateAbcBeat(uint32 beat, uint32 tokenSeed)
+        external pure override returns (string memory abc)
+    {
+        // ... ABC notation generation
+    }
+}`,
   },
   {
     id: 4,

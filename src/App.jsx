@@ -1,8 +1,9 @@
 import { Box, useDisclosure } from '@chakra-ui/react'
 import Square from './components/Square'
 import SquareModal from './components/SquareModal'
-import MintModal from './components/MintModal'
+import MintHero from './components/MintHero'
 import ImageModal from './components/ImageModal'
+import CodeModal from './components/CodeModal'
 import Countdown from './components/Countdown'
 import { useState } from 'react'
 import { squaresData, emptySquaresCount } from './squares-data.jsx'
@@ -10,18 +11,20 @@ import { useInteractiveMelody } from './hooks/useInteractiveMelody'
 
 function App() {
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const { isOpen: isMintOpen, onOpen: onMintOpen, onClose: onMintClose } = useDisclosure()
   const { isOpen: isImageOpen, onOpen: onImageOpen, onClose: onImageClose } = useDisclosure()
+  const { isOpen: isCodeOpen, onOpen: onCodeOpen, onClose: onCodeClose } = useDisclosure()
   const [selectedSquare, setSelectedSquare] = useState(null)
   const [selectedImage, setSelectedImage] = useState(null)
+  const [selectedCode, setSelectedCode] = useState(null)
   const triggerMelody = useInteractiveMelody()
 
   const handleSquareClick = (squareData) => {
-    if (squareData.showMintModal) {
-      onMintOpen()
-    } else if (squareData.showImageModal) {
+    if (squareData.showImageModal) {
       setSelectedImage(squareData.image)
       onImageOpen()
+    } else if (squareData.showCodeModal) {
+      setSelectedCode(squareData)
+      onCodeOpen()
     } else if (squareData.navigateTo) {
       window.location.href = squareData.navigateTo
     } else {
@@ -71,6 +74,8 @@ function App() {
 
   return (
     <Box minH="100vh" bg="black" p={2}>
+      <MintHero />
+
       <Box
         display="grid"
         gridTemplateColumns={{
@@ -86,13 +91,32 @@ function App() {
           const gridColumn = square.colSpan ? `span ${square.colSpan}` : undefined
           const gridRow = square.rowSpan ? `span ${square.rowSpan}` : undefined
 
+          // Add drop animation to the first square
+          const isFirstSquare = square.id === 1
+          const dropAnimation = isFirstSquare ? {
+            '@keyframes dropIn': {
+              '0%': {
+                transform: 'translateY(-100vh)',
+                opacity: 0,
+              },
+              '100%': {
+                transform: 'translateY(0)',
+                opacity: 1,
+              },
+            },
+            animation: 'dropIn 5s ease-out forwards',
+          } : {}
+
           return (
             <Box
               key={square.id}
               gridColumn={gridColumn}
               gridRow={gridRow}
               width="100%"
-              sx={{ aspectRatio: '1 / 1' }}
+              sx={{
+                aspectRatio: '1 / 1',
+                ...dropAnimation,
+              }}
             >
               <Square
                 square={square}
@@ -110,15 +134,18 @@ function App() {
         square={selectedSquare}
       />
 
-      <MintModal
-        isOpen={isMintOpen}
-        onClose={onMintClose}
-      />
-
       <ImageModal
         isOpen={isImageOpen}
         onClose={onImageClose}
         imageSrc={selectedImage}
+      />
+
+      <CodeModal
+        isOpen={isCodeOpen}
+        onClose={onCodeClose}
+        title={selectedCode?.modalTitle}
+        description={selectedCode?.modalDescription}
+        code={selectedCode?.code}
       />
 
     </Box>
