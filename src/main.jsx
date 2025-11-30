@@ -6,8 +6,8 @@ import Burn from './Burn'
 
 const theme = extendTheme({
   fonts: {
-    heading: '"Martel Sans", sans-serif',
-    body: '"Martel Sans", sans-serif',
+    heading: '"Martel Sans", "Noto Music", sans-serif',
+    body: '"Martel Sans", "Noto Music", sans-serif',
   },
   styles: {
     global: {
