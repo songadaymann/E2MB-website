@@ -5,7 +5,7 @@ import MintHero from './components/MintHero'
 import ImageModal from './components/ImageModal'
 import CodeModal from './components/CodeModal'
 import Countdown from './components/Countdown'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { squaresData, emptySquaresCount } from './squares-data.jsx'
 import { useInteractiveMelody } from './hooks/useInteractiveMelody'
 
@@ -16,7 +16,22 @@ function App() {
   const [selectedSquare, setSelectedSquare] = useState(null)
   const [selectedImage, setSelectedImage] = useState(null)
   const [selectedCode, setSelectedCode] = useState(null)
+  const gameboyAudioRef = useRef(null)
   const triggerMelody = useInteractiveMelody()
+
+  useEffect(() => {
+    gameboyAudioRef.current = new Audio('/audio/gameboy.mp3')
+  }, [])
+
+  const handleDropAnimationEnd = () => {
+    const audio = gameboyAudioRef.current
+    if (!audio) return
+
+    audio.currentTime = 0
+    audio.play().catch(() => {
+      // Playback can fail if the user hasn't interacted yet; ignore silently.
+    })
+  }
 
   const handleSquareClick = (squareData) => {
     if (squareData.showImageModal) {
@@ -117,6 +132,7 @@ function App() {
                 aspectRatio: '1 / 1',
                 ...dropAnimation,
               }}
+              onAnimationEnd={isFirstSquare ? handleDropAnimationEnd : undefined}
             >
               <Square
                 square={square}
