@@ -21,7 +21,9 @@ function App() {
 
   useEffect(() => {
     const audioSrc = `${import.meta.env.BASE_URL}audio/gameboy.mp3`
-    gameboyAudioRef.current = new Audio(audioSrc)
+    const audio = new Audio(audioSrc)
+    audio.volume = 0.5
+    gameboyAudioRef.current = audio
   }, [])
 
   const handleDropAnimationEnd = () => {
