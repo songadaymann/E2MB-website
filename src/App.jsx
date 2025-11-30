@@ -20,7 +20,8 @@ function App() {
   const triggerMelody = useInteractiveMelody()
 
   useEffect(() => {
-    gameboyAudioRef.current = new Audio('/audio/gameboy.mp3')
+    const audioSrc = `${import.meta.env.BASE_URL}audio/gameboy.mp3`
+    gameboyAudioRef.current = new Audio(audioSrc)
   }, [])
 
   const handleDropAnimationEnd = () => {
