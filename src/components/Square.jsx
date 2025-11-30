@@ -48,13 +48,42 @@ function Square({ square, onClick, onInteract }) {
       transition="background 0.2s"
       overflow="hidden"
       position="relative"
+      fontSize={{ base: 'sm', md: 'md' }}
     >
       {typeof content === 'string' ? (
-        <Box p={4} fontSize="lg" textAlign="center" whiteSpace="pre-line">
+        <Box
+          p={{ base: 3, md: 4 }}
+          fontSize={{ base: 'md', md: 'lg' }}
+          lineHeight={{ base: '1.4', md: '1.6' }}
+          textAlign="center"
+          whiteSpace="pre-line"
+        >
           {content}
         </Box>
       ) : (
         content
+      )}
+      {square.clickable && (
+        <Box
+          position="absolute"
+          top={2}
+          right={2}
+          px={2}
+          py={0.5}
+          bg="rgba(255,255,255,0.85)"
+          color="black"
+          fontSize="xs"
+          fontWeight="bold"
+          textTransform="uppercase"
+          letterSpacing="0.08em"
+          borderRadius="full"
+          display={{ base: 'inline-flex', md: 'none' }}
+          alignItems="center"
+          justifyContent="center"
+          pointerEvents="none"
+        >
+          tap
+        </Box>
       )}
     </Box>
   )
