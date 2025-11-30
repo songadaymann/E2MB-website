@@ -30,11 +30,22 @@ function Square({ square, onClick, onInteract }) {
     setIsHovered(false)
   }
 
+  const clickableStyles = square.clickable
+    ? {
+        bgGradient: {
+          base: 'linear(to-br, rgba(252,181,59,0.16), rgba(0,0,0,0.85))',
+          md: 'linear(to-br, rgba(252,181,59,0.1), rgba(0,0,0,0.9))',
+        },
+        borderColor: 'rgba(252,181,59,0.7)',
+        boxShadow: 'inset 0 0 12px rgba(252,181,59,0.25)',
+      }
+    : {}
+
   return (
     <Box
       width="100%"
       height="100%"
-      bg="black"
+      bg={!square.clickable ? 'black' : undefined}
       border="2px solid white"
       display="flex"
       alignItems="center"
@@ -44,11 +55,23 @@ function Square({ square, onClick, onInteract }) {
       onPointerEnter={handlePointerEnter}
       onPointerDown={handlePointerDown}
       onPointerLeave={handlePointerLeave}
-      _hover={square.clickable ? { bg: 'gray.900' } : {}}
-      transition="background 0.2s"
+      _hover={
+        square.clickable
+          ? {
+              bgGradient: {
+                base: 'linear(to-br, rgba(252,181,59,0.22), rgba(0,0,0,0.8))',
+                md: 'linear(to-br, rgba(252,181,59,0.16), rgba(0,0,0,0.85))',
+              },
+              borderColor: '#FCB53B',
+              boxShadow: 'inset 0 0 18px rgba(252,181,59,0.35)',
+            }
+          : {}
+      }
+      transition="background 0.2s, border-color 0.2s, box-shadow 0.2s"
       overflow="hidden"
       position="relative"
       fontSize={{ base: 'sm', md: 'md' }}
+      {...clickableStyles}
     >
       {typeof content === 'string' ? (
         <Box
@@ -62,28 +85,6 @@ function Square({ square, onClick, onInteract }) {
         </Box>
       ) : (
         content
-      )}
-      {square.clickable && (
-        <Box
-          position="absolute"
-          top={2}
-          right={2}
-          px={2}
-          py={0.5}
-          bg="rgba(255,255,255,0.85)"
-          color="black"
-          fontSize="xs"
-          fontWeight="bold"
-          textTransform="uppercase"
-          letterSpacing="0.08em"
-          borderRadius="full"
-          display={{ base: 'inline-flex', md: 'none' }}
-          alignItems="center"
-          justifyContent="center"
-          pointerEvents="none"
-        >
-          tap
-        </Box>
       )}
     </Box>
   )
