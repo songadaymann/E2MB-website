@@ -4,11 +4,11 @@ import { useState } from 'react'
 function Square({ square, onClick, onInteract }) {
   const [isHovered, setIsHovered] = useState(false)
 
-  const content = square.type === 'hover' && isHovered 
-    ? square.hoverContent 
-    : square.type === 'hover' 
-    ? square.defaultContent 
-    : square.content
+  const content = square.type === 'hover' && isHovered
+    ? square.hoverContent
+    : square.type === 'hover'
+      ? square.defaultContent
+      : square.content
 
   const handlePointerEnter = (event) => {
     setIsHovered(true)
@@ -32,15 +32,15 @@ function Square({ square, onClick, onInteract }) {
 
   const clickableStyles = square.clickable
     ? {
-        bgGradient: {
-          base: 'linear(to-br, rgba(252,181,59,0.16), rgba(0,0,0,0.85))',
-        },
-        borderColor: { base: 'rgba(252,181,59,0.7)', md: 'white' },
-        boxShadow: {
-          base: 'inset 0 0 12px rgba(252,181,59,0.25)',
-          md: 'none',
-        },
-      }
+      bgGradient: {
+        base: 'linear(to-br, rgba(252,181,59,0.16), rgba(0,0,0,0.85))',
+      },
+      borderColor: { base: 'rgba(252,181,59,0.7)', md: 'white' },
+      boxShadow: {
+        base: 'inset 0 0 12px rgba(252,181,59,0.25)',
+        md: 'none',
+      },
+    }
     : {}
 
   return (
@@ -60,15 +60,15 @@ function Square({ square, onClick, onInteract }) {
       _hover={
         square.clickable
           ? {
-              bgGradient: {
-                base: 'linear(to-br, rgba(252,181,59,0.22), rgba(0,0,0,0.8))',
-              },
-              borderColor: { base: '#FCB53B', md: 'white' },
-              boxShadow: {
-                base: 'inset 0 0 18px rgba(252,181,59,0.35)',
-                md: 'none',
-              },
-            }
+            bgGradient: {
+              base: 'linear(to-br, rgba(252,181,59,0.22), rgba(0,0,0,0.8))',
+            },
+            borderColor: { base: '#FCB53B', md: 'white' },
+            boxShadow: {
+              base: 'inset 0 0 18px rgba(252,181,59,0.35)',
+              md: 'none',
+            },
+          }
           : {}
       }
       transition="background 0.2s, border-color 0.2s, box-shadow 0.2s"
@@ -80,8 +80,8 @@ function Square({ square, onClick, onInteract }) {
       {typeof content === 'string' ? (
         <Box
           p={{ base: 3, md: 4 }}
-          fontSize={{ base: 'md', md: 'lg' }}
-          lineHeight={{ base: '1.4', md: '1.6' }}
+          fontSize={{ base: 'sm', md: 'xl' }}
+          lineHeight={{ base: '1.1', md: '1.2' }}
           textAlign="center"
           whiteSpace="pre-line"
         >

@@ -77,15 +77,16 @@ function MintHero() {
         <Box w="100%" bg="black" borderBottom="1px solid white" mb={8} pt={8} pb={12}>
             <Container maxW="container.xl">
                 <Box textAlign="center" mb={10}>
-                    <Text fontSize={{ base: '2xl', md: '4xl' }} fontWeight="bold" textTransform="uppercase" letterSpacing="0.2em">
-                        every mint
+                    <Text fontSize={{ base: '2xl', md: '5xl' }} fontWeight="bold" textTransform="uppercase" letterSpacing="0.1em" lineHeight="1.2">
+                        EVERY TWO MILLION BLOCKS
                     </Text>
-                    <Text fontSize={{ base: '2xl', md: '4xl' }} fontWeight="bold" textTransform="uppercase" letterSpacing="0.2em">
-                        extends the song
-                    </Text>
-                    <Text fontSize={{ base: '2xl', md: '4xl' }} fontWeight="bold" textTransform="uppercase" letterSpacing="0.2em">
-                        by one year
-                    </Text>
+                    <Box mt={6} fontSize={{ base: 'sm', md: 'xl' }} color="gray.300" letterSpacing="0.05em">
+                        <Text>an onchain, algorithmic song about time</Text>
+                        <Text></Text>
+                        <Text>every mint extends the song by one year</Text>
+                        <Text>mint or explore below</Text>
+
+                    </Box>
                 </Box>
 
                 <Box textAlign="center" maxW="800px" mx="auto">
