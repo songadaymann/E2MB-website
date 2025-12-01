@@ -34,10 +34,12 @@ function Square({ square, onClick, onInteract }) {
     ? {
         bgGradient: {
           base: 'linear(to-br, rgba(252,181,59,0.16), rgba(0,0,0,0.85))',
-          md: 'linear(to-br, rgba(252,181,59,0.1), rgba(0,0,0,0.9))',
         },
-        borderColor: 'rgba(252,181,59,0.7)',
-        boxShadow: 'inset 0 0 12px rgba(252,181,59,0.25)',
+        borderColor: { base: 'rgba(252,181,59,0.7)', md: 'white' },
+        boxShadow: {
+          base: 'inset 0 0 12px rgba(252,181,59,0.25)',
+          md: 'none',
+        },
       }
     : {}
 
@@ -60,10 +62,12 @@ function Square({ square, onClick, onInteract }) {
           ? {
               bgGradient: {
                 base: 'linear(to-br, rgba(252,181,59,0.22), rgba(0,0,0,0.8))',
-                md: 'linear(to-br, rgba(252,181,59,0.16), rgba(0,0,0,0.85))',
               },
-              borderColor: '#FCB53B',
-              boxShadow: 'inset 0 0 18px rgba(252,181,59,0.35)',
+              borderColor: { base: '#FCB53B', md: 'white' },
+              boxShadow: {
+                base: 'inset 0 0 18px rgba(252,181,59,0.35)',
+                md: 'none',
+              },
             }
           : {}
       }
