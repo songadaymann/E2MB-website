@@ -8,10 +8,11 @@ import {
     SliderMark,
     Text,
     Container,
+    Flex,
 } from '@chakra-ui/react'
 import { useMemo, useState } from 'react'
 
-function MintHero() {
+function MintHero({ mintedCount = 0 }) {
     const snapPoints = useMemo(
         () => [1, 5, 10, 100, 500, 1000, 10000, 100000, 500000, 1000000],
         [],
@@ -55,7 +56,7 @@ function MintHero() {
     }
 
     const totalCost = (quantity * pricePerNFT).toFixed(3)
-    const progressPercent = Math.min((totalYears / 1_000_000) * 100, 100)
+
 
     const formatMarker = (value) => {
         if (value >= 1_000_000) return '1M'
@@ -73,28 +74,67 @@ function MintHero() {
         [minorTickCount],
     )
 
+    const getProgressParams = (current) => {
+        if (current < 100) return { min: 0, max: 100 }
+        if (current < 1000) return { min: 0, max: 1000 }
+        if (current < 10000) return { min: 0, max: 10000 }
+
+        const milestones = [
+            10000, 20000, 40000, 80000, 100000, 200000, 500000, 1000000
+        ]
+
+        // Add millions up to a reasonable amount
+        for (let i = 2; i <= 100; i++) {
+            milestones.push(i * 1000000)
+        }
+
+        for (let i = 0; i < milestones.length - 1; i++) {
+            if (current < milestones[i + 1]) {
+                return { min: milestones[i], max: milestones[i + 1] }
+            }
+        }
+
+        return { min: 0, max: 1000000 } // Fallback
+    }
+
+    const { min, max } = getProgressParams(totalYears)
+    const progressPercent = Math.min(((totalYears - min) / (max - min)) * 100, 100)
+
     return (
-        <Box w="100%" bg="black" borderBottom="1px solid white" mb={8} pt={8} pb={12}>
+        <Box
+            w="100%"
+            h="100%"
+            bg="black"
+            borderBottom={{ base: "1px solid white", md: "none" }}
+            border={{ md: "2px solid white" }}
+            mb={{ base: 8, md: 0 }}
+            pt={{ base: 8, md: 0 }}
+            pb={{ base: 12, md: 0 }}
+            display="flex"
+            flexDirection="column"
+            justifyContent="center"
+        >
             <Container maxW="container.xl">
-                <Box textAlign="center" mb={10}>
-                    <Text fontSize={{ base: '2xl', md: '5xl' }} fontWeight="bold" textTransform="uppercase" letterSpacing="0.1em" lineHeight="1.2">
+                <Box textAlign="center" mb={10} mt={-4}>
+                    <Text fontSize={{ base: '2xl', md: '4.5vh' }} fontWeight="bold" textTransform="uppercase" letterSpacing="0.1em" lineHeight="1.2">
                         EVERY TWO MILLION BLOCKS
                     </Text>
-                    <Box mt={6} fontSize={{ base: 'sm', md: 'xl' }} color="gray.300" letterSpacing="0.05em">
-                        <Text>an onchain, algorithmic song about time</Text>
-                        <Text></Text>
-                        <Text>every mint extends the song by one year</Text>
-                        <Text>mint or explore below</Text>
-
+                    <Text fontSize={{ base: 'lg', md: '2.2vh' }} fontWeight="bold" color="white" mt={2} letterSpacing="0.05em">
+                        an onchain, algorithmic song about time
+                    </Text>
+                    <Box mt={6} fontSize={{ base: 'sm', md: '1.8vh' }} color="gray.300" letterSpacing="0.05em" lineHeight="1.6">
+                        <Text>each nft is one note in the song</Text>
+                        <Text>the length of the song will be determined by how many notes are minted</Text>
                     </Box>
                 </Box>
 
                 <Box textAlign="center" maxW="800px" mx="auto">
-                    <Text fontSize="5xl" fontWeight="bold" mb={2}>
-                        {quantity.toLocaleString()}
+                    <Text fontSize={{ base: '5xl', md: '7vh' }} fontWeight="bold" mb={2}>
+                        {quantity.toLocaleString()} {quantity === 1 ? 'year' : 'years'}
                     </Text>
-                    <Text fontSize="sm" color="gray.500" mb={6}>
-                        {quantity !== 1 ? 's' : ''}
+
+                    <Text fontSize={{ base: 'sm', md: '1.8vh' }} color="gray.300" mb={6}>
+                        how long do you want to extend the song?
                     </Text>
 
                     <Box px={{ base: 2, md: 10 }} py={6} position="relative">
@@ -152,29 +192,6 @@ function MintHero() {
                                 </SliderMark>
                             ))}
                         </Slider>
-
-                        <Box mt={6}>
-                            <Box
-                                bg="rgba(255,255,255,0.08)"
-                                borderRadius="full"
-                                height="12px"
-                                position="relative"
-                                overflow="hidden"
-                            >
-                                <Box
-                                    position="absolute"
-                                    top={0}
-                                    left={0}
-                                    height="100%"
-                                    width={`${progressPercent}%`}
-                                    bgGradient="linear(to-r, #FCB53B, #FFFFFF)"
-                                    transition="width 0.2s ease"
-                                />
-                            </Box>
-                            <Text fontSize="sm" color="gray.300" mt={2}>
-                                {totalYears.toLocaleString()} / 1,000,000 years
-                            </Text>
-                        </Box>
                     </Box>
 
                     <Box
@@ -184,7 +201,7 @@ function MintHero() {
                         mb={6}
                         borderRadius="md"
                     >
-                        <Text fontSize="2xl" fontWeight="bold">
+                        <Text fontSize={{ base: '2xl', md: '3vh' }} fontWeight="bold">
                             {totalCost} ETH
                         </Text>
                         <Text fontSize="sm" color="gray.400">
@@ -198,7 +215,7 @@ function MintHero() {
                         bg="white"
                         color="black"
                         _hover={{ bg: 'gray.200' }}
-                        fontSize="2xl"
+                        fontSize={{ base: '2xl', md: '2.5vh' }}
                         py={8}
                         mb={6}
                     >
@@ -206,12 +223,12 @@ function MintHero() {
                     </Button>
                 </Box>
 
-                <Box textAlign="center" pt={4} borderTop="1px solid" borderColor="gray.700" maxW="800px" mx="auto">
-                    <Text fontSize="sm" color="gray.400" mb={1}>
-                        Total song length
+                <Box textAlign="center" mt={8}>
+                    <Text fontSize={{ base: 'lg', md: 'xl' }} color="gray.300">
+                        a total of <Text as="span" color="white" fontWeight="bold">{mintedCount.toLocaleString()}</Text> notes have been minted.
                     </Text>
-                    <Text fontSize="3xl" fontWeight="bold">
-                        {totalYears.toLocaleString()} years
+                    <Text fontSize={{ base: 'lg', md: 'xl' }} color="gray.300">
+                        the song will end in the year <Text as="span" color="white" fontWeight="bold">{2026 + mintedCount}</Text>
                     </Text>
                 </Box>
             </Container>

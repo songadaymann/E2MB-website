@@ -9,6 +9,7 @@ function Square({ square, onClick, onInteract }) {
     : square.type === 'hover'
       ? square.defaultContent
       : square.content
+  const isLongText = square.isLongText || (typeof content === 'string' && content.length > 28)
 
   const handlePointerEnter = (event) => {
     setIsHovered(true)
@@ -79,11 +80,14 @@ function Square({ square, onClick, onInteract }) {
     >
       {typeof content === 'string' ? (
         <Box
-          p={{ base: 3, md: 4 }}
-          fontSize={{ base: 'sm', md: 'xl' }}
-          lineHeight={{ base: '1.1', md: '1.2' }}
+          p={{ base: 3, md: '1.5vh' }}
+          fontSize={{ base: 'sm', md: isLongText ? '1.35vh' : '1.8vh' }}
+          lineHeight={{ base: '1.1', md: isLongText ? '1.18' : '1.2' }}
           textAlign="center"
           whiteSpace="pre-line"
+          wordBreak="break-word"
+          overflowWrap="anywhere"
+          fontWeight={isLongText ? 'semibold' : 'normal'}
         >
           {content}
         </Box>

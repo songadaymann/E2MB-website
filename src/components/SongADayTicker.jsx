@@ -84,11 +84,11 @@ function SongADayTicker() {
 
   return (
     <div style={{ textAlign: 'center' }}>
-      <div style={{ fontSize: '1.1rem', marginBottom: '0.5rem' }}>
+      <div style={{ fontSize: 'clamp(0.85rem, 2vw, 1.05rem)', marginBottom: '0.4rem', lineHeight: 1.25 }}>
         i've been writing a song a day for {stats.years} {yearsLabel} and {stats.days}{' '}
         {daysLabel}
       </div>
-      <div style={{ fontSize: '1.4rem', fontWeight: 'bold' }}>
+      <div style={{ fontSize: 'clamp(1rem, 2.5vw, 1.25rem)', fontWeight: 'bold', lineHeight: 1.2 }}>
         or {songsFormatted} songs.
       </div>
     </div>

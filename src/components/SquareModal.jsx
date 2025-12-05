@@ -39,6 +39,8 @@ function parseYouTubeTime(value) {
 function SquareModal({ isOpen, onClose, square }) {
   if (!square) return null
 
+  const isAlgoModal = square.modalTitle === 'The Algorithm'
+
   const resolveIframeSrc = (url) => {
     if (!url) return null
 
@@ -103,12 +105,32 @@ function SquareModal({ isOpen, onClose, square }) {
     stringModalContent && (iframeSrc || square.image)
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} size="xl">
+    <Modal isOpen={isOpen} onClose={onClose} size={isAlgoModal ? 'full' : 'xl'}>
       <ModalOverlay />
-      <ModalContent bg="black" border="2px solid white">
-        <ModalHeader>{square.modalTitle || 'Details'}</ModalHeader>
-        <ModalCloseButton />
-        <ModalBody whiteSpace="pre-line">
+      <ModalContent
+        bg="black"
+        border="2px solid white"
+        maxW={isAlgoModal ? '1600px' : undefined}
+        maxH={isAlgoModal ? '88vh' : undefined}
+        mt={isAlgoModal ? 6 : undefined}
+        mb={isAlgoModal ? 6 : undefined}
+        px={isAlgoModal ? 1 : undefined}
+      >
+        {!isAlgoModal && <ModalHeader>{square.modalTitle || 'Details'}</ModalHeader>}
+        <ModalCloseButton top={isAlgoModal ? 3 : undefined} right={isAlgoModal ? 3 : undefined} />
+        <ModalBody
+          whiteSpace="pre-line"
+          overflowY="auto"
+          px={{ base: 4, md: isAlgoModal ? 6 : 6 }}
+          py={{ base: 4, md: isAlgoModal ? 4 : 6 }}
+        >
+          {isAlgoModal && square.modalTitle && (
+            <Box mb={4} display="flex" justifyContent="space-between" alignItems="center" pr={{ base: 8, md: 10 }}>
+              <Box fontSize={{ base: 'xl', md: '2xl' }} fontWeight="bold">
+                {square.modalTitle}
+              </Box>
+            </Box>
+          )}
           {iframeSrc ? (
             <iframe 
               src={iframeSrc} 

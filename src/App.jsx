@@ -5,7 +5,7 @@ import MintHero from './components/MintHero'
 import ImageModal from './components/ImageModal'
 import CodeModal from './components/CodeModal'
 import Countdown from './components/Countdown'
-import { useEffect, useRef, useState } from 'react'
+import { useState } from 'react'
 import { squaresData, emptySquaresCount } from './squares-data.jsx'
 import { useInteractiveMelody } from './hooks/useInteractiveMelody'
 
@@ -16,25 +16,7 @@ function App() {
   const [selectedSquare, setSelectedSquare] = useState(null)
   const [selectedImage, setSelectedImage] = useState(null)
   const [selectedCode, setSelectedCode] = useState(null)
-  const gameboyAudioRef = useRef(null)
   const triggerMelody = useInteractiveMelody()
-
-  useEffect(() => {
-    const audioSrc = `${import.meta.env.BASE_URL}audio/gameboy.mp3`
-    const audio = new Audio(audioSrc)
-    audio.volume = 0.5
-    gameboyAudioRef.current = audio
-  }, [])
-
-  const handleDropAnimationEnd = () => {
-    const audio = gameboyAudioRef.current
-    if (!audio) return
-
-    audio.currentTime = 0
-    audio.play().catch(() => {
-      // Playback can fail if the user hasn't interacted yet; ignore silently.
-    })
-  }
 
   const handleSquareClick = (squareData) => {
     if (squareData.showImageModal) {
@@ -91,17 +73,41 @@ function App() {
   ]
 
   return (
-    <Box minH="100vh" bg="black" p={2}>
-      <MintHero />
+    <Box
+      minH="100vh"
+      bg="black"
+      pt={2}
+      px={2}
+      pb={{ base: 2, md: 8 }}
+      display={{ md: 'flex' }}
+      height={{ md: '100vh' }}
+      overflow={{ md: 'hidden' }}
+      boxSizing="border-box"
+    >
+      <Box
+        width={{ base: '100%', md: 'calc(100vh - 40px)' }}
+        height={{ md: '100%' }}
+        overflowY={{ md: 'auto' }}
+        flexShrink={0}
+        borderRight={{ md: '1px solid white' }}
+      >
+        <MintHero />
+      </Box>
 
       <Box
         display="grid"
+        flex={1}
+        height={{ md: '100%' }}
+        overflowX={{ md: 'auto' }}
+        overflowY={{ md: 'hidden' }}
         gridTemplateColumns={{
           base: "repeat(2, minmax(0, 1fr))",
-          md: "repeat(auto-fit, 256px)"
+          md: "none"
         }}
-        gap={2}
-      // gridAutoRows="256px" // Removed to allow aspect-ratio to control height
+        gridAutoFlow={{ md: 'column' }}
+        gridTemplateRows={{ md: "repeat(6, 1fr)" }}
+        gridAutoColumns={{ md: "calc((100vh - 40px) / 6)" }}
+        gap={0}
       >
         {allSquares.map((square) => {
           if (square.hidden) return null
@@ -109,33 +115,13 @@ function App() {
           const gridColumn = square.colSpan ? `span ${square.colSpan}` : undefined
           const gridRow = square.rowSpan ? `span ${square.rowSpan}` : undefined
 
-          // Add drop animation to the first square
-          const isFirstSquare = square.id === 1
-          const dropAnimation = isFirstSquare ? {
-            '@keyframes dropIn': {
-              '0%': {
-                transform: 'translateY(-100vh)',
-                opacity: 0,
-              },
-              '100%': {
-                transform: 'translateY(0)',
-                opacity: 1,
-              },
-            },
-            animation: 'dropIn 5s ease-out forwards',
-          } : {}
-
           return (
             <Box
               key={square.id}
               gridColumn={gridColumn}
               gridRow={gridRow}
               width="100%"
-              sx={{
-                aspectRatio: '1 / 1',
-                ...dropAnimation,
-              }}
-              onAnimationEnd={isFirstSquare ? handleDropAnimationEnd : undefined}
+              sx={{ aspectRatio: '1 / 1' }}
             >
               <Square
                 square={square}

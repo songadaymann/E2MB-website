@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Box } from '@chakra-ui/react'
 import SongADayTicker from './components/SongADayTicker'
+import AlgoDemo from './components/AlgoDemo'
 import { assetPath } from './lib/assetPath'
 
 
@@ -67,90 +68,45 @@ function CountdownBlock() {
 export const squaresData = [
   {
     id: 1,
-    customContent: true,
-    content: (
-      <>
-        {/* Desktop Layout - Original Pixel Perfect */}
-        <Box
-          display={{ base: 'none', md: 'flex' }}
-          fontWeight="900"
-          fontSize="3.2rem"
-          lineHeight="1.1"
-          textAlign="left"
-          p="13px"
-          position="relative"
-          alignItems="flex-start"
-          justifyContent="flex-start"
-          w="100%"
-          h="100%"
-        >
-          <Box position="relative">
-            <Box
-              position="absolute"
-              top="-8px"
-              left="-9px"
-              w="231px"
-              h="158px"
-              border="2px solid white"
-              zIndex={-1}
-            />
-            <Box display="block" letterSpacing="0.27em">EVERY</Box>
-            <Box display="block" letterSpacing="0.95em">TWO</Box>
-            <Box display="block" letterSpacing="0">MILLION</Box>
-            <Box display="block" letterSpacing="0.065em">BLOCKS</Box>
-          </Box>
-        </Box>
-
-        {/* Mobile Layout - Responsive */}
-        <Box
-          display={{ base: 'flex', md: 'none' }}
-          fontWeight="900"
-          fontSize="clamp(1.5rem, 8vw, 2.2rem)"
-          lineHeight="1.1"
-          textAlign="left"
-          p="10px"
-          position="relative"
-          alignItems="flex-start"
-          justifyContent="flex-start"
-          w="100%"
-          h="100%"
-        >
-          <Box position="relative" w="100%">
-            <Box
-              position="absolute"
-              top="-6px"
-              left="-6px"
-              w="100%"
-              h="100%"
-              minH="120px"
-              border="2px solid white"
-              zIndex={-1}
-            />
-            <Box display="block" letterSpacing="0.27em">EVERY</Box>
-            <Box display="block" letterSpacing="0.95em">TWO</Box>
-            <Box display="block" letterSpacing="0">MILLION</Box>
-            <Box display="block" letterSpacing="0.065em">BLOCKS</Box>
-          </Box>
-        </Box>
-      </>
-    ),
-  },
-  {
-    id: 2,
     type: 'hover',
     defaultContent: (
       <div style={{ textAlign: 'center', padding: '1rem', display: 'flex', color: '#FCB53B', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%' }}>
-        <div style={{ fontSize: 'clamp(2rem, 10vw, 3rem)', fontWeight: 'bold', margin: '0.5rem 0' }}>readme</div>
+        <div style={{ fontSize: 'clamp(1.6rem, 8vw, 2.4rem)', fontWeight: 'bold', margin: '0.35rem 0' }}>readme</div>
       </div>
     ),
     hoverContent: (
-      <div style={{ textAlign: 'center', padding: '.5rem', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%', fontSize: '2rem', fontWeight: 'bold' }}>
+      <div style={{ textAlign: 'center', padding: '.5rem', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%', fontSize: '1.6rem', fontWeight: 'bold' }}>
         i'd like to make a song with you
       </div>
     ),
     clickable: true,
     showImageModal: true,
     image: assetPath('images/readme.png'),
+  },
+  {
+    id: 2,
+    customContent: true,
+    content: (
+      <div style={{
+        textAlign: 'center',
+        padding: '1rem',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: '100%',
+        lineHeight: 1,
+        fontWeight: '900',
+        textTransform: 'uppercase',
+        letterSpacing: '0.1em'
+      }}>
+        <div style={{ fontSize: 'clamp(1.6rem, 6vw, 2.6rem)', color: '#fff' }}>algo</div>
+        <div style={{ fontSize: 'clamp(1.6rem, 6vw, 2.6rem)', color: '#888' }}>rithm</div>
+      </div>
+    ),
+    clickable: true,
+    modalTitle: 'The Algorithm',
+    modalContent: <AlgoDemo />,
   },
   {
     id: 3,
@@ -364,6 +320,7 @@ contract SongAlgorithm is ISongAlgorithm {
   },
   {
     id: 11,
+    isLongText: true,
     text: "in 1969, Young & Zazeela created dream house. \n\n dream house has now been running continuously in NYC since 1993",
     // Empty square - leave text as empty string
   },
@@ -393,10 +350,10 @@ contract SongAlgorithm is ISongAlgorithm {
           <div
             key={index}
             style={{
-              fontSize: 'clamp(2rem, 10vw, 4rem)',
+              fontSize: 'clamp(1.3rem, 7vw, 2.5rem)',
               fontWeight: '900',
               textTransform: 'uppercase',
-              letterSpacing: '0.35rem',
+              letterSpacing: '0.25rem',
               color,
               opacity,
               lineHeight: '1',
@@ -450,6 +407,7 @@ contract SongAlgorithm is ISongAlgorithm {
   },
   {
     id: 19,
+    isLongText: true,
     text: "since 1996, Danny Hillis set out to create the Clock of the Long Now. \n\n\ it's meant to operate for 10,000 years",
     // Empty square - leave text as empty string
   },
@@ -463,6 +421,7 @@ contract SongAlgorithm is ISongAlgorithm {
   },
   {
     id: 21,
+    isLongText: true,
     text: "in 2000, Jem Finer set in motion his song Longplayer, set to last 1000 years.",
     // Empty square - leave text as empty string
   },
@@ -477,6 +436,7 @@ contract SongAlgorithm is ISongAlgorithm {
 
   {
     id: 23,
+    isLongText: true,
     text: "in 2001, the organ in this church began to play As Slow As Possible. \n\nthe performance is set to end in 2640",
     // Empty square - leave text as empty string
   },
@@ -535,6 +495,7 @@ contract SongAlgorithm is ISongAlgorithm {
   },
   {
     id: 28,
+    isLongText: true,
     text: "in 2014, Bull of Heaven created a song that can last 3.343 quindecillion years \n\n ",
     // Empty square - leave text as empty string
   },
@@ -561,6 +522,7 @@ contract SongAlgorithm is ISongAlgorithm {
   },
   {
     id: 28,
+    isLongText: true,
     text: "in 2021, Alvin Lucier died.\n\n in 2025, a brain organoid grown from his blood sent signals that played music on large brass plates. ",
     // Empty square - leave text as empty string
   },
@@ -577,6 +539,7 @@ contract SongAlgorithm is ISongAlgorithm {
 
   {
     id: 30,
+    isLongText: true,
     text: "in 2026, the first note of Every Two Million Blocks will begin playing for a year",
     // Empty square - leave text as empty string
   },
@@ -594,6 +557,7 @@ contract SongAlgorithm is ISongAlgorithm {
   },
   {
     id: 33,
+    isLongText: true,
     text: "one note is revealed every ~2,628,000 blocks.",
     // Empty square - leave text as empty string
   },
@@ -616,6 +580,7 @@ contract SongAlgorithm is ISongAlgorithm {
   },
   {
     id: 37,
+    isLongText: true,
     text: "this is the 37th block\n\nthe average human lifespan is 73 years",
     // Empty square - leave text as empty string
   },
